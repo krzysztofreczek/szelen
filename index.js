@@ -23,8 +23,8 @@ var recentEvents = ""
 var workoutDate = ""
 
 function initialize() {
-  user = getUserCookie()
-  recentEvents = getRecentEventsCookie()
+  user = getCookie("user")
+  recentEvents = getCookie("recentEvents")
 
   if (userExists(user)) {
     setWorkoutPageHeader()
@@ -70,7 +70,7 @@ function getIn() {
     return
   }
 
-  setCookie(user, recentEvents, 1)
+  setCookie("user", user, 1)
 
   setWorkoutPageHeader()
   switchTo("workout-page")
@@ -110,7 +110,7 @@ function setWorkoutDate() {
         recentEvents += ","
       }
       recentEvents += workoutDate + ":" + user
-      setCookie(user, recentEvents, 1)
+      setCookie("recentEvents", recentEvents, 1)
 
       summaryPageHeader = document.getElementById("summary-page-header")
       summaryPageHeader.innerHTML = "Super!"

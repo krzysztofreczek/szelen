@@ -75,7 +75,7 @@ function getEventsFromFile(callback) {
 }
 
 function getEventsFromCookies(callback) {
-  var recentEvents = getRecentEventsCookie().split(",")
+  var recentEvents = getCookie("recentEvents").split(",")
   for (var e of recentEvents) {
     if (e == "") {
       continue
