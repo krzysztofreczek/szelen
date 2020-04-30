@@ -32,8 +32,8 @@ function initialize() {
     user = users[0]
   }
 
-  getEvents(loadPageContents)
-  // mockEvents(loadPageContents)
+  // getEvents(loadPageContents)
+  mockEvents(loadPageContents)
 }
 
 function getEvents(callback) {
@@ -81,14 +81,17 @@ function analyzeData() {
   var monday = getMonday(today)
   for (var e of events) {
     if (e.timestamp >= monday) {
-      updateStats(thisWeekStatistics, e)
+      thisWeekStatistics = updateStats(thisWeekStatistics, e)
     }
-    updateStats(totalStatistics, e)
+    totalStatistics = updateStats(totalStatistics, e)
   }
 }
 
-function updateStats(stats, e) {
+function updateStats(inStats, e) {
+  var stats = inStats
+
   stats.total++
+
   if (!stats[e.user]) {
     stats[e.user] = {
       total: 0
@@ -109,8 +112,10 @@ function updateStats(stats, e) {
       leaders += u
     }
   }
+
   stats.leaders = leaders
 
+  return stats
 }
 
 function loadPageContents() {
