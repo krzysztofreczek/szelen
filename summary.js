@@ -62,9 +62,7 @@ function getEventsFromFile(callback) {
           timestamp: new Date(w[0]),
           user: w[1],
         }
-        if (events.indexOf(event) === -1) {
-          events.push(event)
-        }
+        addEvent(event)
       }
 
       callback()
@@ -87,12 +85,24 @@ function getEventsFromCookies(callback) {
       timestamp: new Date(w[0]),
       user: w[1],
     }
-    if (events.indexOf(event) === -1) {
-      events.push(event)
-    }
+    addEvent(event)
   }
   
   callback()
+}
+
+function addEvent(event) {
+  var alreadyExists = false
+  for (var e of events) {
+    if (e == event) {
+      alreadyExists = true
+      break
+    }  
+  }
+
+  if (!alreadyExists) {
+    events.push(event)
+  }
 }
 
 var thisWeekStatistics = {
