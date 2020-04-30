@@ -32,8 +32,8 @@ function initialize() {
     user = users[0]
   }
 
-  // getEvents(loadPageContents)
-  mockEvents(loadPageContents)
+  getEvents(loadPageContents)
+  // mockEvents(loadPageContents)
 }
 
 function getEvents(callback) {
@@ -55,9 +55,9 @@ function getEvents(callback) {
           user: w[1],
         }
         events.push(event)
-
-        callback()
       }
+
+      callback()
     }
   }
 
