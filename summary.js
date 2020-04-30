@@ -94,7 +94,7 @@ function getEventsFromCookies(callback) {
 function addEvent(event) {
   var alreadyExists = false
   for (var e of events) {
-    if (e == event) {
+    if (eventsEqual(e, event)) {
       alreadyExists = true
       break
     }  
@@ -330,6 +330,18 @@ function compareEvents(e1, e2) {
   }
 
   return 1
+}
+
+function eventsEqual(e1, e2) {
+  if (e1.timestamp.toDateString != e2.timestamp.toDateString) {
+    return false
+  }
+
+  if (e1.user != e2.user) {
+    return false
+  }
+
+  return true
 }
 
 function mockEvents(callback) {
