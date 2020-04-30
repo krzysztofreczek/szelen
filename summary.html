@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Szelen: Summary</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body class="container text-center" onload="initialize()">
+  <div id="summary-page" class="card-body">
+    <div class="row">
+      <div class="col-sm">
+        <h1>Ten tydzień:</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <div id="main-chart-container" style="height: 400px; width: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div id="chart-container-1" style="height: 100px; width: auto;"></div>
+      </div>
+      <div class="col-4">
+        <div id="chart-container-2" style="height: 100px; width: auto;"></div>
+      </div>
+      <div class="col-4">
+        <div id="chart-container-3" style="height: 100px; width: auto;"></div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead><tr><th scope="col">Liczba treningów:</th></tr></thead>
+          <tbody><tr><th scope="col">15</th></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead><tr><th scope="col">Lider:</th></tr></thead>
+          <tbody><tr><th scope="col">Ania [5]</th></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-sm">
+        <h1>Od początku szelenu:</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <div id="history-chart-container" style="height: 300px; width: 100%;"></div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead><tr><th scope="col">Liczba treningów:</th></tr></thead>
+          <tbody><tr><th scope="col">70</th></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead><tr><th scope="col">Lider:</th></tr></thead>
+          <tbody><tr><th scope="col">Ania [24]</th></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <h1>Wszystkie treningi:</h1>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Kiedy</th>
+              <th scope="col">Kto</th>
+            </tr>
+          </thead>
+          <tbody id="all-events-table">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <script src="summary.js"></script>
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>

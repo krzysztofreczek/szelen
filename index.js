@@ -31,15 +31,13 @@ function initialize() {
   document.getElementById("get-in-btn").addEventListener("click", getIn)
   document.getElementById("workout-btn").addEventListener("click", workout)
   document.getElementById("set-workout-date-btn").addEventListener("click", setWorkoutDate)
-  document.getElementById("summary-btn").addEventListener("click", showSummary)
+  document.getElementById("summary-btn").addEventListener("click", switchToSummary)
 }
 
 function switchTo(toPage) {
   pages = [
     "entry-page",
     "workout-page",
-    "when-page",
-    "summary-page"
   ]
   for (var p of pages) {
     var page = document.getElementById(p)
@@ -107,7 +105,7 @@ function setWorkoutDate() {
     if (xhr.readyState ==4 && xhr.status == 201) {
       summaryPageHeader = document.getElementById("summary-page-header")
       summaryPageHeader.innerHTML = "Super!"
-      showSummary()
+      switchToSummary()
     }
   }
     
@@ -119,56 +117,6 @@ function setWorkoutDate() {
   setWorkoutDateBtn.innerHTML = "Wysyłam..."
 }
 
-function showSummary() {
-  var xhr = new XMLHttpRequest()
-  xhr.open("GET", "./db/events", true)
-  xhr.setRequestHeader('Cache-Control', 'no-cache');
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState==4 && xhr.status==200 ){    
-      var lines = xhr.responseText.split("\n")
-      for (var l of lines) {
-        if (l == "") {
-          continue
-        }
-
-        w = l.split(":")
-        
-        event = {
-          timestamp: w[0],
-          user: w[1],
-        }
-        events.push(event)
-      }
-    }
-
-    var table = document.getElementById("stats")
-    table.innerHTML = ""
-
-    events.sort(compareEvents)
-
-    var i = 0
-    for (var e of events) {
-      var row = table.insertRow(i)
-      row.insertCell(0).innerHTML = "-"
-      row.insertCell(1).innerHTML = e.timestamp
-      row.insertCell(2).innerHTML = e.user
-      i++
-    }
-
-    switchTo("summary-page")
-  }
-
-  xhr.send()
-}
-
-function compareEvents(e1, e2) {
-  if (e1.timestamp > e2.timestamp) {
-    return -1
-  }
-
-  if (e1.timestamp == e2.timestamp) {
-    return 0
-  }
-
-  return 1
+function switchToSummary() {
+  window.location.href = "./summary.html?" + user;
 }
