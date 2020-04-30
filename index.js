@@ -19,14 +19,15 @@ var events = [
 ]
 
 var user = ""
+var recentEvents = ""
 var workoutDate = ""
 
 function initialize() {
-  var cookieUser = getCookie("user")
+  user = getUserCookie()
+  recentEvents = getRecentEventsCookie()
 
-  if (userExists(cookieUser)) {
-    user = cookieUser
-    setWorkoutPageHeader() 
+  if (userExists(user)) {
+    setWorkoutPageHeader()
     switchTo("workout-page")
   } else {
     switchTo("entry-page")
@@ -69,9 +70,9 @@ function getIn() {
     return
   }
 
-  setCookie("user", user, 1)
+  setCookie(user, recentEvents, 1)
 
-  setWorkoutPageHeader() 
+  setWorkoutPageHeader()
   switchTo("workout-page")
 }
 
@@ -95,28 +96,27 @@ function setWorkoutDate() {
     return
   }
 
-  event = {
-    user: user,
-    timestamp: workoutDate
-  }
-  events.push(event)
-
   var xhr = new XMLHttpRequest()
-  var url='https://cors-anywhere.herokuapp.com/circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
+  var url = 'https://cors-anywhere.herokuapp.com/circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
   xhr.open("POST", url, true)
-  
+
   xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
   xhr.setRequestHeader("Content-type", "application/json")
   xhr.setRequestHeader("origin", "krzysztofreczek.github.io")
 
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState ==4 && xhr.status == 201) {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 201) {
+      if (recentEvents != "") {
+        recentEvents += ","
+      }
+      recentEvents += workoutDate + ":" + user
+
       summaryPageHeader = document.getElementById("summary-page-header")
       summaryPageHeader.innerHTML = "Super!"
       switchToSummary()
     }
   }
-    
+
   var payload = `{"build_parameters" : {"CIRCLE_JOB" : "add_event", "EVENT_USER" : "` + user + `", "EVENT_TIMESTAMP" : "` + workoutDate + `" }}`
   xhr.send(payload)
 
@@ -126,27 +126,5 @@ function setWorkoutDate() {
 }
 
 function switchToSummary() {
-  window.location.href = "./summary.html?" + user;
-}
-
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+  window.location.href = "./summary.html?" + user
 }

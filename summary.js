@@ -37,6 +37,14 @@ function initialize() {
 }
 
 function getEvents(callback) {
+  getEventsFromFile(function() {
+    getEventsFromCookies(function() {
+      callback()
+    })
+  })
+}
+
+function getEventsFromFile(callback) {
   var xhr = new XMLHttpRequest()
   xhr.open("GET", "./db/events", true)
   xhr.setRequestHeader('Cache-Control', 'no-cache')
@@ -54,7 +62,9 @@ function getEvents(callback) {
           timestamp: new Date(w[0]),
           user: w[1],
         }
-        events.push(event)
+        if (events.indexOf(event) === -1) {
+          events.push(event)
+        }
       }
 
       callback()
@@ -62,6 +72,27 @@ function getEvents(callback) {
   }
 
   xhr.send()
+}
+
+function getEventsFromCookies(callback) {
+  var recentEvents = getRecentEventsCookie().split(",")
+  for (var e of recentEvents) {
+    if (e == "") {
+      continue
+    }
+
+    w = e.split(":")
+
+    event = {
+      timestamp: new Date(w[0]),
+      user: w[1],
+    }
+    if (events.indexOf(event) === -1) {
+      events.push(event)
+    }
+  }
+  
+  callback()
 }
 
 var thisWeekStatistics = {
@@ -293,54 +324,54 @@ function compareEvents(e1, e2) {
 
 function mockEvents(callback) {
   events = [
-    {
-      user: "Basia",
-      timestamp: new Date("2020/4/18")
-    },
-    {
-      user: "Ania",
-      timestamp: new Date("2020/4/17")
-    },
-    {
-      user: "Ania",
-      timestamp: new Date("2020/4/18")
-    },
-    {
-      user: "Majkel",
-      timestamp: new Date("2020/4/18")
-    },
-    {
-      user: "Krzysio",
-      timestamp: new Date("2020/4/26")
-    },
-    {
-      user: "Basia",
-      timestamp: new Date("2020/4/28")
-    },
-    {
-      user: "Ania",
-      timestamp: new Date("2020/4/27")
-    },
-    {
-      user: "Majkel",
-      timestamp: new Date("2020/4/28")
-    },
-    {
-      user: "Krzysio",
-      timestamp: new Date("2020/4/29")
-    },
-    {
-      user: "Basia",
-      timestamp: new Date("2020/4/30")
-    },
-    {
-      user: "Ania",
-      timestamp: new Date("2020/4/30")
-    },
-    {
-      user: "Krzysio",
-      timestamp: new Date("2020/4/30")
-    },
+    // {
+    //   user: "Basia",
+    //   timestamp: new Date("2020/4/18")
+    // },
+    // {
+    //   user: "Ania",
+    //   timestamp: new Date("2020/4/17")
+    // },
+    // {
+    //   user: "Ania",
+    //   timestamp: new Date("2020/4/18")
+    // },
+    // {
+    //   user: "Majkel",
+    //   timestamp: new Date("2020/4/18")
+    // },
+    // {
+    //   user: "Krzysio",
+    //   timestamp: new Date("2020/4/26")
+    // },
+    // {
+    //   user: "Basia",
+    //   timestamp: new Date("2020/4/28")
+    // },
+    // {
+    //   user: "Ania",
+    //   timestamp: new Date("2020/4/27")
+    // },
+    // {
+    //   user: "Majkel",
+    //   timestamp: new Date("2020/4/28")
+    // },
+    // {
+    //   user: "Krzysio",
+    //   timestamp: new Date("2020/4/29")
+    // },
+    // {
+    //   user: "Basia",
+    //   timestamp: new Date("2020/4/30")
+    // },
+    // {
+    //   user: "Ania",
+    //   timestamp: new Date("2020/4/30")
+    // },
+    // {
+    //   user: "Krzysio",
+    //   timestamp: new Date("2020/4/30")
+    // },
   ]
 
   callback()
