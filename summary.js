@@ -11,13 +11,13 @@ var users = [
 
 var events = []
 
-var colors = [
-  "#bdc3c7",
-  "#51cda0",
-  "#6d78ad",
-  "#df7970",
-  "#c9d45c",
-]
+var colors = {
+  Default: "#bdc3c7",
+  Krzysio: "#51cda0",
+  Basia: "#6d78ad",
+  Ania: "#df7970",
+  Majkel: "#c9d45c",
+}
 
 var link = window.location.href
 user = link.split("?")[1]
@@ -205,8 +205,8 @@ function printMainWeeklyChart() {
       indexLabel: "{label} [{y}]",
       yValueFormatString: "##0",
       dataPoints: [
-        { y: done, label: "Zrobione", color: colors[1] },
-        { y: todo, label: "Pozostałe", color: colors[0] },
+        { y: done, label: "Zrobione", color: colors[user] },
+        { y: todo, label: "Pozostałe", color: colors["Default"] },
       ]
     }]
   })
@@ -243,8 +243,8 @@ function printAuxiliaryWeeklyChart() {
         indexLabelFontSize: 18,
         radius: 100,
         dataPoints: [
-          { y: done, color: colors[i + 1] },
-          { y: todo, color: colors[0] },
+          { y: done, color: colors[u] },
+          { y: todo, color: colors["Default"] },
         ]
       }]
     })
@@ -277,20 +277,17 @@ function printHistoryChart() {
     dataPoints[e.user].push(dataPoint)
   }
 
-  var i = 1
   var data = []
   for (var u of users) {
     var d = {
       type: "stackedColumn",
       showInLegend: true,
-      color: colors[i],
+      color: colors[u],
       name: u,
       dataPoints: dataPoints[u]
     }
 
     data.push(d)
-    
-    i++
   }
 
   var chart = new CanvasJS.Chart("history-chart-container", {
