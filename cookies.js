@@ -1,12 +1,14 @@
 function setCookie(user, recentEvents, exdays) {
-  document.cookie = "user=" + user
-  document.cookie += ";re=" + recentEvents
+  var cookies = "user=" + user
+  cookies += ";re=" + recentEvents
 
   var d = new Date()
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
-  document.cookie += ";expires=" + d.toUTCString()
+  cookies += ";expires=" + d.toUTCString()
 
-  document.cookie += ";path=/"
+  cookies += ";path=/"
+
+  document.cookie = cookies
 }
 
 function getUserCookie() {
