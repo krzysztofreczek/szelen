@@ -333,7 +333,7 @@ function compareEvents(e1, e2) {
 }
 
 function eventsEqual(e1, e2) {
-  if (e1.timestamp.toDateString != e2.timestamp.toDateString) {
+  if (e1.timestamp.toDateString() != e2.timestamp.toDateString()) {
     return false
   }
 
