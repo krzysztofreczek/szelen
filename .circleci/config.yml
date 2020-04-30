@@ -1,0 +1,14 @@
+version: 2
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+  add_event:
+    machine: true
+    steps:
+      - checkout
+      - run: make add_event
+      - run: make push
