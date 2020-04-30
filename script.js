@@ -163,12 +163,12 @@ function showSummary() {
 
 function compareEvents(e1, e2) {
   if (e1.timestamp > e2.timestamp) {
-    return 1
+    return -1
   }
 
   if (e1.timestamp == e2.timestamp) {
     return 0
   }
 
-  return -1
+  return 1
 }
