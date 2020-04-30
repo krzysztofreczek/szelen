@@ -49,7 +49,7 @@ function getEvents(callback) {
         w = l.split(":")
 
         event = {
-          timestamp: w[0],
+          timestamp: new Date(w[0]),
           user: w[1],
         }
         events.push(event)
