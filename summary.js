@@ -324,54 +324,54 @@ function compareEvents(e1, e2) {
 
 function mockEvents(callback) {
   events = [
-    // {
-    //   user: "Basia",
-    //   timestamp: new Date("2020/4/18")
-    // },
-    // {
-    //   user: "Ania",
-    //   timestamp: new Date("2020/4/17")
-    // },
-    // {
-    //   user: "Ania",
-    //   timestamp: new Date("2020/4/18")
-    // },
-    // {
-    //   user: "Majkel",
-    //   timestamp: new Date("2020/4/18")
-    // },
-    // {
-    //   user: "Krzysio",
-    //   timestamp: new Date("2020/4/26")
-    // },
-    // {
-    //   user: "Basia",
-    //   timestamp: new Date("2020/4/28")
-    // },
-    // {
-    //   user: "Ania",
-    //   timestamp: new Date("2020/4/27")
-    // },
-    // {
-    //   user: "Majkel",
-    //   timestamp: new Date("2020/4/28")
-    // },
-    // {
-    //   user: "Krzysio",
-    //   timestamp: new Date("2020/4/29")
-    // },
-    // {
-    //   user: "Basia",
-    //   timestamp: new Date("2020/4/30")
-    // },
-    // {
-    //   user: "Ania",
-    //   timestamp: new Date("2020/4/30")
-    // },
-    // {
-    //   user: "Krzysio",
-    //   timestamp: new Date("2020/4/30")
-    // },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/18")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/17")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/18")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/18")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/26")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/28")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/27")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/28")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/29")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/30")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/30")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/30")
+    },
   ]
 
   callback()
