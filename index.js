@@ -31,11 +31,11 @@ function initialize() {
 
   if (userExists(cookieUser)) {
     user = cookieUser
+    setWorkoutPageHeader() 
     switchTo("workout-page")
   } else {
     switchTo("entry-page")
   }
-
 
   flatpickr('#date-picker', {
     dateFormat: 'Y/m/d',
@@ -76,10 +76,13 @@ function getIn() {
 
   document.cookie = "user=" + user;
 
+  setWorkoutPageHeader() 
+  switchTo("workout-page")
+}
+
+function setWorkoutPageHeader() {
   workoutPageHeader = document.getElementById("workout-page-header")
   workoutPageHeader.innerHTML = "Cześć " + user + "!<br> Jak tam szelen?"
-
-  switchTo("workout-page")
 }
 
 var setWorkoutDateOnce = false
