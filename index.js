@@ -110,6 +110,7 @@ function setWorkoutDate() {
         recentEvents += ","
       }
       recentEvents += workoutDate + ":" + user
+      setCookie(user, recentEvents, 1)
 
       summaryPageHeader = document.getElementById("summary-page-header")
       summaryPageHeader.innerHTML = "Super!"
