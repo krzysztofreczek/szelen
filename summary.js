@@ -155,7 +155,7 @@ function printMainWeeklyChart() {
     theme: "light2",
     animationEnabled: true,
     title: {
-      text: "Twoje",
+      text: "Ty",
     },
     data: [{
       type: "doughnut",

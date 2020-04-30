@@ -12,6 +12,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <link href="flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
@@ -30,22 +31,14 @@
             </div>
           </div>
         </form>
-        <button class="btn btn-primary" id="get-in-btn">Wchodzę</button>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="get-in-btn">Wchodzę</button>
+        </div>
       </div>
 
       <div id="workout-page" class="card-body" style="display: none">
-        <h1 id="workout-page-header">Jak tam szelen?</h1>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary" id="workout-btn">Było ćwiczone!!!</button>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-secondary" id="summary-btn">Pokaż statystyki</button>
-        </div>
-      </div>
-
-      <div id="when-page" class="card-body" style="display: none">
         <form>
-          <h1 id="when-page-header">A kiedy?</h1>
+          <h1 id="workout-page-header">Jak tam szelen?</h1>
           <div class="form-group">
             <div class="flatpickr-wrapper">
               <input id="date-picker" class="form-control" placeholder="Wybierz dzień">
@@ -55,7 +48,12 @@
             </div>
           </div>
         </form>
-        <button class="btn btn-primary" id="set-workout-date-btn">Wtedy</button>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="set-workout-date-btn">Dodaj trening</button><br>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary" id="summary-btn">Pokaż statystyki</button>
+        </div>
       </div>
 
       <div id="summary-page" class="card-body" style="display: none">
