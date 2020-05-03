@@ -11,3 +11,17 @@
 h1 {
     color: #6d78ad;
 }
+
+.week-done {
+    color: #51cda0;
+    font-weight: bold;
+}
+
+.week-failed {
+    color: #df7970;
+    font-weight: bold;
+}
+
+.week-pending {
+    color: #c9d45c;
+}

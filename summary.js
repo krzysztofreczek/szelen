@@ -1,6 +1,7 @@
 //alert("connected")
 
-var weeklyGoal = 4
+var challengeWeeklyGoal = 4
+var challengeStartMonday = new Date("2020/04/27")
 
 var users = [
   "Basia",
@@ -163,6 +164,7 @@ function loadPageContents() {
   analyzeData()
   printLabels()
   printAllCharts()
+  printWeekStatusesTable()
   printAllEventsTable()
 }
 
@@ -176,7 +178,7 @@ function printLabels() {
   if (totalStatistics[user]) {
     userTotal = totalStatistics[user].total
   }
-  
+
   document.getElementById("weekly-yours").innerHTML = weeklyUserTotal
   document.getElementById("weekly-total").innerHTML = thisWeekStatistics.total
   document.getElementById("weekly-leaders").innerHTML = thisWeekStatistics.leaders + " [" + thisWeekStatistics.leaderTotal + "]"
@@ -193,7 +195,7 @@ function printAllCharts() {
 
 function printMainWeeklyChart() {
   var done = 0
-  var todo = weeklyGoal
+  var todo = challengeWeeklyGoal
 
   if (thisWeekStatistics[user]) {
     done = thisWeekStatistics[user].total
@@ -233,7 +235,7 @@ function printAuxiliaryWeeklyChart() {
     }
 
     var done = 0
-    var todo = weeklyGoal
+    var todo = challengeWeeklyGoal
 
     if (thisWeekStatistics[u]) {
       done = thisWeekStatistics[u].total
@@ -313,6 +315,78 @@ function printHistoryChart() {
   chart.render()
 }
 
+function printWeekStatusesTable() {
+  var weeks = {}
+
+  var weekStartDate = challengeStartMonday
+  while (true) {
+    var weekEndDate = getAddDays(weekStartDate, 7)
+    weeks[weekStartDate.toDateString()] = {
+      start: weekStartDate,
+      end: weekEndDate
+    }
+    if (new Date() < weekEndDate) {
+      break
+    }
+    weekStartDate = weekEndDate
+  }
+
+  for (var e of events) {
+    var eMonday = getMonday(e.timestamp)
+    var eWeek = weeks[eMonday.toDateString()]
+    if (!eWeek[e.user]) {
+      eWeek[e.user] = 0
+    }
+    eWeek[e.user]++
+  }
+
+  var table = document.getElementById("all-weeks-table")
+  table.innerHTML = ""
+
+  var i = 0
+  for (var idx in weeks) {
+    var w = weeks[idx]
+
+    var wStatus = "SUKCES!"
+    var wClass = "week-done"
+
+    var losers = []
+    for (var u of users) {
+      if (!w[u] || w[u] < challengeWeeklyGoal) {
+        losers.push(u)
+      }
+    }
+
+    if (losers.length != 0) {
+      wStatus = ""
+      for (var l of losers) {
+        if (wStatus != "") {
+          wStatus += ", "
+        } 
+        wStatus += l
+      }
+      wStatus = "PORAŻKA (" + wStatus + ") :("
+      wClass = "week-failed"
+    }
+    
+    if (w.end > new Date()) {
+      wStatus = "..."
+      wClass = "week-pending"
+    }
+
+
+    var row = table.insertRow(i)
+    row.insertCell(0).innerHTML = "-"
+    row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.end.toLocaleDateString()
+
+    var statusCell = row.insertCell(2)
+    statusCell.innerHTML = wStatus
+    statusCell.classList.add(wClass)
+
+    i++
+  }
+}
+
 function printAllEventsTable() {
   var table = document.getElementById("all-events-table")
   table.innerHTML = ""
@@ -389,6 +463,70 @@ function mockEvents(callback) {
     },
     {
       user: "Krzysio",
+      timestamp: new Date("2020/4/20")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/20")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/20")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/20")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/21")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/21")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/21")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/21")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/22")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/22")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/22")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/22")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/4/23")
+    },
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/23")
+    },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/4/23")
+    },
+    {
+      user: "Majkel",
+      timestamp: new Date("2020/4/23")
+    },
+    {
+      user: "Krzysio",
       timestamp: new Date("2020/4/29")
     },
     {
@@ -420,4 +558,10 @@ function getMonday(d) {
   var date = new Date(d.toDateString())
   var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1)
   return new Date(date.setDate(diff))
+}
+
+function getAddDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
 }
