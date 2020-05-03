@@ -377,7 +377,7 @@ function printWeekStatusesTable() {
     var row = table.insertRow(i)
 
     var idx = row.insertCell(0)
-    idx.innerHTML = i
+    idx.innerHTML = i + 1
     idx.classList.add("idx")
 
     row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.end.toLocaleDateString()
