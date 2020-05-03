@@ -37,8 +37,8 @@ function initialize() {
 }
 
 function getEvents(callback) {
-  getEventsFromFile(function() {
-    getEventsFromCookies(function() {
+  getEventsFromFile(function () {
+    getEventsFromCookies(function () {
       callback()
     })
   })
@@ -87,7 +87,7 @@ function getEventsFromCookies(callback) {
     }
     addEvent(event)
   }
-  
+
   callback()
 }
 
@@ -97,7 +97,7 @@ function addEvent(event) {
     if (eventsEqual(e, event)) {
       alreadyExists = true
       break
-    }  
+    }
   }
 
   if (!alreadyExists) {
@@ -191,7 +191,7 @@ function printMainWeeklyChart() {
   if (todo < 0) {
     todo = 0
   }
-  
+
   var chart = new CanvasJS.Chart("main-chart-container", {
     theme: "light2",
     animationEnabled: true,
@@ -273,7 +273,7 @@ function printHistoryChart() {
       x: e.timestamp,
       y: 1,
     }
-    
+
     dataPoints[e.user].push(dataPoint)
   }
 
@@ -391,12 +391,21 @@ function mockEvents(callback) {
       user: "Krzysio",
       timestamp: new Date("2020/4/30")
     },
+    {
+      user: "Ania",
+      timestamp: new Date("2020/5/2")
+    },
+    {
+      user: "Krzysio",
+      timestamp: new Date("2020/5/3")
+    },
   ]
 
   callback()
 }
 
 function getMonday(d) {
-  var day = d.getDay(), diff = d.getDate() - day
-  return new Date(d.setDate(diff))
+  var date = new Date(d.toDateString())
+  var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1)
+  return new Date(date.setDate(diff))
 }
