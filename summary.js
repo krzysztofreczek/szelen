@@ -375,7 +375,11 @@ function printWeekStatusesTable() {
     }
 
     var row = table.insertRow(i)
-    row.insertCell(0).innerHTML = "-"
+
+    var idx = row.insertCell(0)
+    idx.innerHTML = i
+    idx.classList.add("idx")
+
     row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.end.toLocaleDateString()
 
     var statusCell = row.insertCell(2)
@@ -395,7 +399,11 @@ function printAllEventsTable() {
   var i = 0
   for (var e of events) {
     var row = table.insertRow(i)
-    row.insertCell(0).innerHTML = "-"
+
+    var idx = row.insertCell(0)
+    idx.innerHTML = events.length - i
+    idx.classList.add("idx")
+
     row.insertCell(1).innerHTML = e.timestamp.toLocaleDateString()
     row.insertCell(2).innerHTML = e.user
     i++
