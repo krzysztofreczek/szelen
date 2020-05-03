@@ -374,7 +374,6 @@ function printWeekStatusesTable() {
       wClass = "week-pending"
     }
 
-
     var row = table.insertRow(i)
     row.insertCell(0).innerHTML = "-"
     row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.end.toLocaleDateString()
