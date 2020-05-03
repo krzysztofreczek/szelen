@@ -167,8 +167,20 @@ function loadPageContents() {
 }
 
 function printLabels() {
+  weeklyUserTotal = 0
+  if (thisWeekStatistics[user]) {
+    weeklyUserTotal = thisWeekStatistics[user].total
+  }
+
+  userTotal = 0
+  if (totalStatistics[user]) {
+    userTotal = totalStatistics[user].total
+  }
+  
+  document.getElementById("weekly-yours").innerHTML = weeklyUserTotal
   document.getElementById("weekly-total").innerHTML = thisWeekStatistics.total
   document.getElementById("weekly-leaders").innerHTML = thisWeekStatistics.leaders + " [" + thisWeekStatistics.leaderTotal + "]"
+  document.getElementById("yours").innerHTML = userTotal
   document.getElementById("total").innerHTML = totalStatistics.total
   document.getElementById("leaders").innerHTML = totalStatistics.leaders + " [" + totalStatistics.leaderTotal + "]"
 }
