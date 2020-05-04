@@ -189,8 +189,10 @@ function printLabels() {
 
 function printAllCharts() {
   printMainWeeklyChart()
-  printAuxiliaryWeeklyChart()
+  printAuxiliaryWeeklyCharts()
   printHistoryChart()
+  printWeeklyAllChart()
+  printAllChart()
 }
 
 function printMainWeeklyChart() {
@@ -227,7 +229,7 @@ function printMainWeeklyChart() {
   chart.render()
 }
 
-function printAuxiliaryWeeklyChart() {
+function printAuxiliaryWeeklyCharts() {
   var i = 1
   for (var u of users) {
     if (u == user) {
@@ -315,6 +317,93 @@ function printHistoryChart() {
   chart.render()
 }
 
+function printWeeklyAllChart() {
+  var dataPoints = []
+
+  for (var u of users) {
+    if (!thisWeekStatistics[u]) {
+      continue 
+    }
+
+    var dp = {
+      y: thisWeekStatistics[u].total,
+      label: u,
+      color: colors[u],
+    }
+    dataPoints.push(dp)
+  }
+
+  if (dataPoints.length == 0) {
+    var dp = {
+      y: 1,
+      label: "",
+      color: colors["Default"],
+    }
+    dataPoints.push(dp)
+  }
+
+  var chart = new CanvasJS.Chart("weekly-all-chart-container", {
+    theme: "light2",
+    animationEnabled: true,
+    title: {
+      text: "Udział wszystkich osób:",
+    },
+    data: [{
+      type: "doughnut",
+      indexLabelFontSize: 18,
+      radius: 100,
+      indexLabel: "{label}",
+      yValueFormatString: "##0",
+      dataPoints: dataPoints,
+    }]
+  })
+  chart.render()
+}
+
+function printAllChart() {
+  var dataPoints = []
+
+  for (var u of users) {
+    if (!totalStatistics[u]) {
+      continue 
+    }
+
+    var dp = {
+      y: totalStatistics[u].total,
+      label: u,
+      color: colors[u],
+    }
+    
+    dataPoints.push(dp)
+  }
+
+  if (dataPoints.length == 0) {
+    var dp = {
+      y: 1,
+      label: "",
+      color: colors["Default"],
+    }
+    dataPoints.push(dp)
+  }
+
+  var chart = new CanvasJS.Chart("all-chart-container", {
+    theme: "light2",
+    animationEnabled: true,
+    title: {
+      text: "Udział wszystkich osób:",
+    },
+    data: [{
+      type: "doughnut",
+      indexLabelFontSize: 18,
+      radius: 100,
+      indexLabel: "{label}",
+      yValueFormatString: "##0",
+      dataPoints: dataPoints,
+    }]
+  })
+  chart.render()
+}
+
 function printWeekStatusesTable() {
   var weeks = {}
 
@@ -362,13 +451,13 @@ function printWeekStatusesTable() {
       for (var l of losers) {
         if (wStatus != "") {
           wStatus += ", "
-        } 
+        }
         wStatus += l
       }
       wStatus = "PORAŻKA (" + wStatus + ") :("
       wClass = "week-failed"
     }
-    
+
     if (w.end > new Date()) {
       wStatus = "..."
       wClass = "week-pending"
