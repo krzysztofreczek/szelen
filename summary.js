@@ -1,7 +1,13 @@
 //alert("connected")
 
+var devMode = false
+
 var challengeWeeklyGoal = 4
+
 var challengeStartMonday = new Date("2020/04/27")
+if (devMode) {
+  challengeStartMonday = new Date("2020/03/16")
+}
 
 var users = [
   "Basia",
@@ -33,8 +39,11 @@ function initialize() {
     user = users[0]
   }
 
-  getEvents(loadPageContents)
-  // mockEvents(loadPageContents)
+  if (devMode) {
+    mockEvents(loadPageContents)
+  } else {
+    getEvents(loadPageContents)
+  }
 }
 
 function getEvents(callback) {
@@ -463,7 +472,8 @@ function printWeekStatusesTable() {
       wClass = "week-pending"
     }
 
-    var row = table.insertRow(i)
+    var rowPosition = weeks.length - i
+    var row = table.insertRow(rowPosition)
 
     var idx = row.insertCell(0)
     idx.innerHTML = i + 1
