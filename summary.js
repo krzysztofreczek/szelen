@@ -19,11 +19,11 @@ var users = [
 var events = []
 
 var colors = {
-  Default: "#bdc3c7",
-  Krzysio: "#51cda0",
-  Basia: "#6d78ad",
-  Ania: "#df7970",
-  Majkel: "#c9d45c",
+  "Default": "#bdc3c7",
+  "Krzysio": "#51cda0",
+  "Basia": "#6d78ad",
+  "Ania": "#df7970",
+  "Majkel": "#c9d45c",
 }
 
 var link = window.location.href
