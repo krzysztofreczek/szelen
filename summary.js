@@ -128,7 +128,7 @@ var totalStatistics = {
 }
 
 function analyzeData() {
-  var today = new Date()
+  var today = getToday()
   var monday = getMonday(today)
   for (var e of events) {
     if (e.timestamp >= monday) {
@@ -225,7 +225,7 @@ function printMainWeeklyChart() {
     },
     data: [{
       type: "doughnut",
-      indexLabelFontSize: 18,
+      indexLabelFontSize: 12,
       radius: 100,
       indexLabel: "{label} [{y}]",
       yValueFormatString: "##0",
@@ -257,6 +257,10 @@ function printAuxiliaryWeeklyCharts() {
       todo = 0
     }
 
+    if (i > 3) {
+      return
+    }
+
     var chart = new CanvasJS.Chart("chart-container-" + i, {
       theme: "light2",
       animationEnabled: true,
@@ -265,7 +269,7 @@ function printAuxiliaryWeeklyCharts() {
       },
       data: [{
         type: "doughnut",
-        indexLabelFontSize: 18,
+        indexLabelFontSize: 12,
         radius: 100,
         dataPoints: [
           { y: done, color: colors[u] },
@@ -279,14 +283,13 @@ function printAuxiliaryWeeklyCharts() {
 }
 
 function printHistoryChart() {
-  var today = new Date()
-  var monday = getMonday(today)
-  var mondayWeekAgo = new Date()
-  mondayWeekAgo.setDate(monday - 7)
+  var today = getToday()
+  var threeWeeksAgo = new Date()
+  threeWeeksAgo.setDate(today.getDate() - 21)
 
   var dataPoints = {}
   for (var e of events) {
-    if (e.timestamp < mondayWeekAgo) {
+    if (e.timestamp < threeWeeksAgo) {
       continue
     }
 
@@ -318,7 +321,7 @@ function printHistoryChart() {
   var chart = new CanvasJS.Chart("history-chart-container", {
     animationEnabled: true,
     axisX: {
-      interval: 1,
+      interval: 3,
       intervalType: "day",
     },
     data: data,
@@ -359,7 +362,7 @@ function printWeeklyAllChart() {
     },
     data: [{
       type: "doughnut",
-      indexLabelFontSize: 18,
+      indexLabelFontSize: 12,
       radius: 100,
       indexLabel: "{label}",
       yValueFormatString: "##0",
@@ -403,7 +406,7 @@ function printAllChart() {
     },
     data: [{
       type: "doughnut",
-      indexLabelFontSize: 18,
+      indexLabelFontSize: 12,
       radius: 100,
       indexLabel: "{label}",
       yValueFormatString: "##0",
@@ -423,7 +426,7 @@ function printWeekStatusesTable() {
       start: weekStartDate,
       end: weekEndDate
     }
-    if (new Date() < weekEndDate) {
+    if (getToday() < weekEndDate) {
       break
     }
     weekStartDate = weekEndDate
@@ -467,7 +470,7 @@ function printWeekStatusesTable() {
       wClass = "week-failed"
     }
 
-    if (w.end > new Date()) {
+    if (w.end > getToday()) {
       wStatus = "..."
       wClass = "week-pending"
     }
@@ -535,6 +538,10 @@ function eventsEqual(e1, e2) {
 
 function mockEvents(callback) {
   events = [
+    {
+      user: "Basia",
+      timestamp: new Date("2020/4/13")
+    },
     {
       user: "Basia",
       timestamp: new Date("2020/4/18")
@@ -658,6 +665,13 @@ function mockEvents(callback) {
   ]
 
   callback()
+}
+
+function getToday() {
+  if (devMode) {
+    return new Date("2020/5/3")
+  }
+  return new Date()
 }
 
 function getMonday(d) {
