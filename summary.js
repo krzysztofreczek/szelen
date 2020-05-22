@@ -26,6 +26,16 @@ var colors = {
   "Majkel": "#c9d45c",
 }
 
+var weekdayNames = [
+  'Niedziela',
+  'Poniedziałek',
+  'Wtorek',
+  'Środa',
+  'Czwartek',
+  'Piątek',
+  'Sobota'
+]
+
 var link = window.location.href
 user = link.split("?")[1]
 if (user == "") {
@@ -200,6 +210,7 @@ function printAllCharts() {
   printMainWeeklyChart()
   printAuxiliaryWeeklyCharts()
   printHistoryChart()
+  printWeekDaysChart()
   printWeeklyAllChart()
   printAllChart()
 }
@@ -323,10 +334,102 @@ function printHistoryChart() {
     axisX: {
       interval: 3,
       intervalType: "day",
+      gridThickness: 1,
+      gridColor: colors["Default"]
+    },
+    axisY: {
+      gridThickness: 1,
+      gridColor: colors["Default"]
     },
     data: data,
   })
   chart.render()
+}
+
+function printWeekDaysChart() {
+  var userWeekdayStats = {}
+
+  for (var e of events) {
+    if (!userWeekdayStats[e.user]) {
+      userWeekdayStats[e.user] = {}
+    }
+
+    var weekday = getWeekday(e.timestamp)
+    if (!userWeekdayStats[e.user][weekday]) {
+      userWeekdayStats[e.user][weekday] = 0
+    }
+
+    userWeekdayStats[e.user][weekday]++
+  }
+
+  var dataPoints = []
+
+  var i = -1
+  for (var u of users) {
+    i++
+
+    if (!userWeekdayStats[u]) {
+      continue
+    }
+
+    var j = -1
+    for (var wd of weekdayNames) {
+      j++
+
+      if (!userWeekdayStats[u][wd]) {
+        continue
+      }
+
+      var value = userWeekdayStats[u][wd]
+
+      var dp = {
+        x: j,
+        y: i,
+        z: value,
+        color: colors[u],
+        user: u,
+        day: wd
+      }
+
+      dataPoints.push(dp)
+    }
+  }
+
+  var chart = new CanvasJS.Chart("week-days-chart-container", {
+    animationEnabled: true,
+    zoomEnabled: true,
+    theme: "light2",
+    axisX: {
+      minimum: -1,
+      maximum: 7,
+      gridThickness: 1,
+      gridColor: colors["Default"],
+      labelFormatter: function(e) {
+        if (!weekdayNames[e.value]) {
+          return ""
+        }
+        return weekdayNames[e.value]
+      }
+    },
+    axisY: {
+      minimum: -1,
+      maximum: 4,
+      gridThickness: 1,
+      gridColor: colors["Default"],
+      labelFormatter: function(e) {
+        if (!users[e.value]) {
+          return ""
+        }
+        return users[e.value]
+      }
+    },
+    data: [{
+      type: "bubble",
+      toolTipContent: "Dzień: {day}<br/> Osoba: {user}<br/> Ilość: {z}",
+      dataPoints: dataPoints
+    }]
+  });
+  chart.render();
 }
 
 function printWeeklyAllChart() {
@@ -334,7 +437,7 @@ function printWeeklyAllChart() {
 
   for (var u of users) {
     if (!thisWeekStatistics[u]) {
-      continue 
+      continue
     }
 
     var dp = {
@@ -377,7 +480,7 @@ function printAllChart() {
 
   for (var u of users) {
     if (!totalStatistics[u]) {
-      continue 
+      continue
     }
 
     var dp = {
@@ -385,7 +488,7 @@ function printAllChart() {
       label: u,
       color: colors[u],
     }
-    
+
     dataPoints.push(dp)
   }
 
@@ -678,6 +781,10 @@ function getMonday(d) {
   var date = new Date(d.toDateString())
   var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1)
   return new Date(date.setDate(diff))
+}
+
+function getWeekday(d) {
+  return weekdayNames[d.getDay()]
 }
 
 function getAddDays(date, days) {
