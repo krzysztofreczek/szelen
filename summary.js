@@ -527,7 +527,7 @@ function printWeekStatusesTable() {
     var weekEndDate = getAddDays(weekStartDate, 7)
     weeks[weekStartDate.toDateString()] = {
       start: weekStartDate,
-      end: weekEndDate
+      end: getAddDays(weekStartDate, 6)
     }
     if (getToday() < weekEndDate) {
       break
@@ -573,7 +573,7 @@ function printWeekStatusesTable() {
       wClass = "week-failed"
     }
 
-    if (w.end > getToday()) {
+    if (w.end >= getToday()) {
       wStatus = "..."
       wClass = "week-pending"
     }
