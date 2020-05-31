@@ -404,7 +404,7 @@ function printWeekDaysChart() {
       maximum: 7,
       gridThickness: 1,
       gridColor: colors["Default"],
-      labelFormatter: function(e) {
+      labelFormatter: function (e) {
         if (!weekdayNames[e.value]) {
           return ""
         }
@@ -416,7 +416,7 @@ function printWeekDaysChart() {
       maximum: 4,
       gridThickness: 1,
       gridColor: colors["Default"],
-      labelFormatter: function(e) {
+      labelFormatter: function (e) {
         if (!users[e.value]) {
           return ""
         }
@@ -524,15 +524,17 @@ function printWeekStatusesTable() {
 
   var weekStartDate = challengeStartMonday
   while (true) {
-    var weekEndDate = getAddDays(weekStartDate, 7)
+    var weekLastDayDate = getAddDays(weekStartDate, 6)
+    var nextWeekStartDate = getAddDays(weekStartDate, 7)
     weeks[weekStartDate.toDateString()] = {
       start: weekStartDate,
-      end: getAddDays(weekStartDate, 6)
+      last: weekLastDayDate,
+      nextWeek: nextWeekStartDate,
     }
-    if (getToday() < weekEndDate) {
+    if (getToday() < nextWeekStartDate) {
       break
     }
-    weekStartDate = weekEndDate
+    weekStartDate = nextWeekStartDate
   }
 
   for (var e of events) {
@@ -573,7 +575,7 @@ function printWeekStatusesTable() {
       wClass = "week-failed"
     }
 
-    if (w.end >= getToday()) {
+    if (w.nextWeek > getToday()) {
       wStatus = "..."
       wClass = "week-pending"
     }
@@ -585,7 +587,7 @@ function printWeekStatusesTable() {
     idx.innerHTML = i + 1
     idx.classList.add("idx")
 
-    row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.end.toLocaleDateString()
+    row.insertCell(1).innerHTML = w.start.toLocaleDateString() + " - " + w.last.toLocaleDateString()
 
     var statusCell = row.insertCell(2)
     statusCell.innerHTML = wStatus
