@@ -24,6 +24,7 @@ var colors = {
   "Basia": "#6d78ad",
   "Ania": "#df7970",
   "Majkel": "#c9d45c",
+  "Special": "#f1c40f",
 }
 
 var weekdayNames = [
@@ -218,6 +219,7 @@ function printAllCharts() {
 function printMainWeeklyChart() {
   var done = 0
   var todo = challengeWeeklyGoal
+  var over = 0
 
   if (thisWeekStatistics[user]) {
     done = thisWeekStatistics[user].total
@@ -226,6 +228,11 @@ function printMainWeeklyChart() {
 
   if (todo < 0) {
     todo = 0
+  }
+
+  if (done > challengeWeeklyGoal) {
+    over = done - challengeWeeklyGoal
+    done = challengeWeeklyGoal
   }
 
   var chart = new CanvasJS.Chart("main-chart-container", {
@@ -243,6 +250,7 @@ function printMainWeeklyChart() {
       dataPoints: [
         { y: done, label: "Zrobione", color: colors[user] },
         { y: todo, label: "Pozostałe", color: colors["Default"] },
+        { y: over, label: "Nadmiarowe", color: colors["Special"] },
       ]
     }]
   })
@@ -258,6 +266,7 @@ function printAuxiliaryWeeklyCharts() {
 
     var done = 0
     var todo = challengeWeeklyGoal
+    var over = 0
 
     if (thisWeekStatistics[u]) {
       done = thisWeekStatistics[u].total
@@ -266,6 +275,11 @@ function printAuxiliaryWeeklyCharts() {
 
     if (todo < 0) {
       todo = 0
+    }
+
+    if (done > challengeWeeklyGoal) {
+      over = done - challengeWeeklyGoal
+      done = challengeWeeklyGoal
     }
 
     if (i > 3) {
@@ -285,6 +299,7 @@ function printAuxiliaryWeeklyCharts() {
         dataPoints: [
           { y: done, color: colors[u] },
           { y: todo, color: colors["Default"] },
+          { y: over, color: colors["Special"] },
         ]
       }]
     })
@@ -760,7 +775,15 @@ function mockEvents(callback) {
       timestamp: new Date("2020/4/30")
     },
     {
+      user: "Krzysio",
+      timestamp: new Date("2020/5/1")
+    },
+    {
       user: "Ania",
+      timestamp: new Date("2020/5/2")
+    },
+    {
+      user: "Krzysio",
       timestamp: new Date("2020/5/2")
     },
     {
