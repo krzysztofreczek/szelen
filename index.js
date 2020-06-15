@@ -78,7 +78,19 @@ function getIn() {
 
 function setWorkoutPageHeader() {
   workoutPageHeader = document.getElementById("workout-page-header")
-  workoutPageHeader.innerHTML = "Hej " + user + "!"
+  workoutPageHeader.innerHTML = getRandomGreeting()
+}
+
+function getRandomGreeting() {
+  var greetings = [
+    "Cześć " + user + "!<br> Co słychać?",
+    "Hej " + user + "!<br> Jak leci?",
+    "Jak tam szelen, " + user + "?",
+    "Miło Cię widzieć, " + user + "!",
+    "Dzień dobry, " + user + " :)"
+  ]
+  var randomIdx = Math.floor(Math.random() * greetings.length)
+  return greetings[randomIdx]
 }
 
 var setWorkoutDateOnce = false
