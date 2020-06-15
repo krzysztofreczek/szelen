@@ -15,6 +15,7 @@ push:
 	@echo "Pushing events to GH:"
 	git config user.email "reczek.krzysztof@gmail.com" && \
 		git config user.name "krzysztofreczek" && \
+		git pull
 		git add . && \
 		git commit -m "Add event" && \
 		git push -q https://${GITHUB_TOKEN}@github.com/krzysztofreczek/szelen.git master
