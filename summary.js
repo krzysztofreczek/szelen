@@ -1,5 +1,3 @@
-//alert("connected")
-
 var devMode = false
 
 var challengeWeeklyGoal = 4
@@ -58,39 +56,51 @@ function initialize() {
 }
 
 function getEvents(callback) {
-  getEventsFromFile(function () {
+  getEventsFromShards(function () {
     getEventsFromCookies(function () {
       callback()
     })
   })
 }
 
-function getEventsFromFile(callback) {
-  var xhr = new XMLHttpRequest()
-  xhr.open("GET", "./db/events", true)
-  xhr.setRequestHeader('Cache-Control', 'no-cache')
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var lines = xhr.responseText.split("\n")
-      for (var l of lines) {
-        if (l == "") {
-          continue
-        }
+var numberOfShards = 4
 
-        w = l.split(":")
-
-        event = {
-          timestamp: new Date(w[0]),
-          user: w[1],
-        }
-        addEvent(event)
-      }
-
-      callback()
-    }
+function getEventsFromShards(callback) {
+  var cbClosure = callback
+  for (var i = 0; i < numberOfShards; i++) {
+    cbClosure = getEventsFromShardsClosure(i, cbClosure)
   }
+  cbClosure()
+}
 
-  xhr.send()
+function getEventsFromShardsClosure(idx, callback) {
+  return function () {
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", "./db/events_" + idx, true)
+    xhr.setRequestHeader('Cache-Control', 'no-cache')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var lines = xhr.responseText.split("\n")
+        for (var l of lines) {
+          if (l == "") {
+            continue
+          }
+
+          w = l.split(":")
+
+          event = {
+            timestamp: new Date(w[0]),
+            user: w[1],
+          }
+          addEvent(event)
+        }
+
+        callback()
+      }
+    }
+
+    xhr.send()
+  }
 }
 
 function getEventsFromCookies(callback) {

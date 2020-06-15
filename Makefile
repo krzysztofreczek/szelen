@@ -4,8 +4,9 @@ default: add_event
 add_event:
 	@test $(EVENT_USER) || ( echo "EVENT_USER not set" & exit 1 )
 	@test $(EVENT_TIMESTAMP) || ( echo "EVENT_TIMESTAMP not set" & exit 2 )
+	@test $(CIRCLE_BUILD_NUM) || ( echo "CIRCLE_BUILD_NUM not set" & exit 3 )
 	@echo "Adding event:"
-	echo "${EVENT_TIMESTAMP}:${EVENT_USER}" >> ./db/events
+	echo "${EVENT_TIMESTAMP}:${EVENT_USER}" >> ./db/events_$$(($(CIRCLE_BUILD_NUM) % 4))
 	@echo "...done"
 
 .PHONY: push
