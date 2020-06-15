@@ -78,7 +78,7 @@ function getIn() {
 
 function setWorkoutPageHeader() {
   workoutPageHeader = document.getElementById("workout-page-header")
-  workoutPageHeader.innerHTML = "Cześć " + user + "!<br> Jak tam szelen?"
+  workoutPageHeader.innerHTML = "Hej " + user + "!"
 }
 
 var setWorkoutDateOnce = false
