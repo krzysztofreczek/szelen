@@ -635,9 +635,16 @@ function printAllEventsTable() {
     var idx = row.insertCell(0)
     idx.innerHTML = events.length - i
     idx.classList.add("idx")
+    idx.style.width = '33%';
 
-    row.insertCell(1).innerHTML = e.timestamp.toLocaleDateString()
-    row.insertCell(2).innerHTML = e.user
+    var timestamp = row.insertCell(1)
+    timestamp.innerHTML = e.timestamp.toLocaleDateString()
+    timestamp.style.width = '33%';
+
+    var user = row.insertCell(2)
+    user.innerHTML = e.user
+    user.style.width = '33%';
+
     i++
   }
 }

@@ -29,3 +29,8 @@ h1 {
 .idx {
     color: #dee2e6;
 }
+
+.table-div {
+    overflow: scroll;
+    height: 30em;
+}
