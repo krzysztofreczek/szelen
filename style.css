@@ -1,3 +1,9 @@
+@media (min-width: 768px) {
+    .container.main-container {
+        width: 720px;
+    }
+}
+
 .btn-primary {
     background-color: #51cda0;
     border-color:#51cda0d5;
