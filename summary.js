@@ -607,7 +607,9 @@ function printWeekStatusesTable() {
         wStatus = "..."
         wClass = "week-pending"
       } else {
-        confetti.start(5 * 1000)
+        setTimeout(function(){
+          confetti.start(5 * 1000)
+        }, 1500)
       }
     }
 
