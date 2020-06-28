@@ -12,163 +12,206 @@
   <link href="style.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="vendor/confetti.js"></script>
 </head>
 
-<body class="container text-center" onload="initialize()">
-  <div id="summary-page" class="card-body">
-    <div class="row">
-      <div class="col-sm">
-        <h1>Ten tydzień:</h1>
+<body onload="initialize()">
+  <div class="container text-center">
+    <div id="summary-page" class="card-body">
+      <div class="row">
+        <div class="col-sm">
+          <h1>Ten tydzień:</h1>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <div id="main-chart-container" style="height: 400px; width: 100%;"></div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="main-chart-container" style="height: 400px; width: 100%;"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md col-lg-4">
-        <div id="chart-container-1" style="height: 120px; width: auto;"></div>
+      <div class="row">
+        <div class="col-md col-lg-4">
+          <div id="chart-container-1" style="height: 120px; width: auto;"></div>
+        </div>
+        <div class="col-md col-lg-4">
+          <div id="chart-container-2" style="height: 120px; width: auto;"></div>
+        </div>
+        <div class="col-md col-lg-4">
+          <div id="chart-container-3" style="height: 120px; width: auto;"></div>
+        </div>
       </div>
-      <div class="col-md col-lg-4">
-        <div id="chart-container-2" style="height: 120px; width: auto;"></div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liczba twoich treningów w tym tygodniu:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="weekly-yours" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="col-md col-lg-4">
-        <div id="chart-container-3" style="height: 120px; width: auto;"></div>
+
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liczba wszystkich treningów w tym tygodniu:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="weekly-total" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <br><br>
-
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liczba twoich treningów w tym tygodniu:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="weekly-yours" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liderzy tygodnia:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="weekly-leaders" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liczba wszystkich treningów w tym tygodniu:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="weekly-total" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <div class="col-sm">
+          <div id="weekly-all-chart-container" style="height: 300px; width: 100%;"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liderzy tygodnia:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="weekly-leaders" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <br><br>
+
+      <div class="row">
+        <div class="col-sm">
+          <h1>Od początku szelenu:</h1>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <div id="weekly-all-chart-container" style="height: 300px; width: 100%;"></div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="history-chart-container" style="height: 300px; width: 100%;"></div>
+        </div>
       </div>
-    </div>
 
-    <br><br>
+      <br><br>
 
-    <div class="row">
-      <div class="col-sm">
-        <h1>Od początku szelenu:</h1>
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liczba wszystkich twoich treningów:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="yours" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <div id="history-chart-container" style="height: 300px; width: 100%;"></div>
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liczba wszystkich treningów:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="total" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <br><br>
-
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liczba wszystkich twoich treningów:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="yours" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Liderzy:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="leaders" scope="col"></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liczba wszystkich treningów:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="total" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row">
+        <div class="col-sm">
+          <div id="all-chart-container" style="height: 300px; width: 100%;"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Liderzy:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th id="leaders" scope="col"></th>
-            </tr>
-          </tbody>
-        </table>
+      <br>
+
+      <div class="row">
+        <div class="col-sm">
+          <h1>W które dni tygodnia ćwiczymy:</h1>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm">
-        <div id="all-chart-container" style="height: 300px; width: 100%;"></div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="week-days-chart-container" style="height: 300px; width: 100%;"></div>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-sm">
+          <h1>Wszystkie tygodnie szelenu:</h1>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" width="33%">#</th>
+                <th scope="col" width="33%">Tydzień</th>
+                <th scope="col" width="33%">Status</th>
+              </tr>
+            </thead>
+            <tbody id="all-weeks-table">
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -176,21 +219,7 @@
 
     <div class="row">
       <div class="col-sm">
-        <h1>W które dni tygodnia ćwiczymy:</h1>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm">
-        <div id="week-days-chart-container" style="height: 300px; width: 100%;"></div>
-      </div>
-    </div>
-
-    <br><br>
-
-    <div class="row">
-      <div class="col-sm">
-        <h1>Wszystkie tygodnie szelenu:</h1>
+        <h1>Wszystkie treningi:</h1>
       </div>
     </div>
 
@@ -202,51 +231,24 @@
           <thead>
             <tr>
               <th scope="col" width="33%">#</th>
-              <th scope="col" width="33%">Tydzień</th>
-              <th scope="col" width="33%">Status</th>
+              <th scope="col" width="33%">Kiedy</th>
+              <th scope="col" width="33%">Kto</th>
             </tr>
           </thead>
-          <tbody id="all-weeks-table">
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm table-div">
+        <table class="table">
+          <tbody id="all-events-table">
           </tbody>
         </table>
       </div>
     </div>
-  </div>
 
-  <br>
-
-  <div class="row">
-    <div class="col-sm">
-      <h1>Wszystkie treningi:</h1>
-    </div>
-  </div>
-
-  <br><br>
-
-  <div class="row">
-    <div class="col-sm">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" width="33%">#</th>
-            <th scope="col" width="33%">Kiedy</th>
-            <th scope="col" width="33%">Kto</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm table-div">
-      <table class="table">
-        <tbody id="all-events-table">
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <br><br>
+    <br><br>
 
   </div>
 
@@ -264,6 +266,7 @@
   <script src="summary.js"></script>
 
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </div>
 </body>
 
 </html>

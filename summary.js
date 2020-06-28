@@ -3,8 +3,10 @@ var devMode = false
 var challengeWeeklyGoal = 4
 
 var challengeStartMonday = new Date("2020/04/27")
+var today = new Date()
 if (devMode) {
   challengeStartMonday = new Date("2020/03/16")
+  today = new Date("2020/5/3")
 }
 
 var users = [
@@ -601,8 +603,12 @@ function printWeekStatusesTable() {
     }
 
     if (w.nextWeek > getToday()) {
-      wStatus = "..."
-      wClass = "week-pending"
+      if (losers.length != 0) {
+        wStatus = "..."
+        wClass = "week-pending"
+      } else {
+        confetti.start(5 * 1000)
+      }
     }
 
     var rowPosition = weeks.length - i
@@ -813,10 +819,7 @@ function mockEvents(callback) {
 }
 
 function getToday() {
-  if (devMode) {
-    return new Date("2020/5/3")
-  }
-  return new Date()
+  return today
 }
 
 function getMonday(d) {
