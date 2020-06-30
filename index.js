@@ -110,6 +110,11 @@ function setWorkoutDate() {
     return
   }
 
+  summaryPageHeader = document.getElementById("summary-page-header")
+  summaryPageHeader.innerHTML = "Super!"
+
+  confetti.start(2 * 1000)
+
   var xhr = new XMLHttpRequest()
   var url = 'https://cors-anywhere.herokuapp.com/circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
   xhr.open("POST", url, true)
@@ -125,9 +130,6 @@ function setWorkoutDate() {
       }
       recentEvents += workoutDate + ":" + user
       setCookie("recentEvents", recentEvents, 1)
-
-      summaryPageHeader = document.getElementById("summary-page-header")
-      summaryPageHeader.innerHTML = "Super!"
       switchToSummary()
     }
   }
