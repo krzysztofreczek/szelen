@@ -33,9 +33,11 @@ function initialize() {
     switchTo("entry-page")
   }
 
-  flatpickr('#date-picker', {
-    dateFormat: 'Y/m/d',
-  })
+  var flatpickrConfig = {
+    enableTime: false,
+    dateFormat: "Y/m/d",
+  }
+  flatpickr("#date-picker", flatpickrConfig)
 
   document.getElementById("get-in-btn").addEventListener("click", getIn)
   document.getElementById("set-workout-date-btn").addEventListener("click", setWorkoutDate)

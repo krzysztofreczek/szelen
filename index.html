@@ -11,68 +11,70 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <link href="flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
   <link href="style.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <link rel="stylesheet" href="vendor/flatpickr.min.css">
+  <script src="vendor/flatpickr.js"></script>
 </head>
 
-<body class="container main-container text-center" onload="initialize()">
-  <div class="row">
-    <div class="col-sm">
-
-      <div id="entry-page" class="card-body" style="display: none">
-        <form>
-          <h1 id="entry-page-header">Kto tam?</h1>
-          <div class="form-group">
-            <input type="text" class="form-control" id="user-input" placeholder="Podaj imię" value="">
-            <div id="user-input-feedback" class="invalid-feedback">
-              Podaj poprawne imię
+<body onload="initialize()">
+  <div class="container main-container text-center">
+    <div class="row">
+      <div class="col-sm">
+        <div id="entry-page" class="card-body" style="display: none">
+          <form>
+            <h1 id="entry-page-header">Kto tam?</h1>
+            <div class="form-group">
+              <input type="text" class="form-control" id="user-input" placeholder="Podaj imię" value="">
+              <div id="user-input-feedback" class="invalid-feedback">
+                Podaj poprawne imię
+              </div>
             </div>
-          </div>
-        </form>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary" id="get-in-btn">Wchodzę</button>
-        </div>
-      </div>
-
-      <div id="workout-page" class="card-body" style="display: none">
-        <form>
-          <h1 id="workout-page-header">Jak tam szelen?</h1>
-          <img src="images/apple.gif" style="max-height:100%; max-width:100%;" alt="" />
+          </form>
           <div class="form-group">
-            <div class="flatpickr-wrapper">
-              <input id="date-picker" class="form-control" placeholder="Wybierz dzień">
+            <button type="submit" class="btn btn-primary" id="get-in-btn">Wchodzę</button>
+          </div>
+        </div>
+
+        <div id="workout-page" class="card-body" style="display: none">
+          <form>
+            <h1 id="workout-page-header">Jak tam szelen?</h1>
+            <img src="images/apple.gif" style="max-height:100%; max-width:100%;" alt="" />
+            <div class="form-group">
+              <input id="date-picker" class="flatpickr flatpickr-input form-control" type="text"
+                placeholder="Wybierz dzień">
               <div id="user-input-feedback" class="invalid-feedback">
                 Podaj poprawną datę
               </div>
             </div>
+          </form>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="set-workout-date-btn">Dodaj trening</button><br>
           </div>
-        </form>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary" id="set-workout-date-btn">Dodaj trening</button><br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-secondary" id="summary-btn">Pokaż statystyki</button>
+          </div>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-secondary" id="summary-btn">Pokaż statystyki</button>
+
+        <div id="summary-page" class="card-body" style="display: none">
+          <h1 id="summary-page-header">Ostatnie wpisy:</h1>
+          <h6>Najnowsze wpisy mogą być widoczne z opóźnieniem</h6>
+          <table class="table">
+            <thead id="stats">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Kiedy</th>
+                <th scope="col">Kto</th>
+              </tr>
+            </thead>
+            <tbody id="stats">
+            </tbody>
+          </table>
         </div>
-      </div>
 
-      <div id="summary-page" class="card-body" style="display: none">
-        <h1 id="summary-page-header">Ostatnie wpisy:</h1>
-        <h6>Najnowsze wpisy mogą być widoczne z opóźnieniem</h6>
-        <table class="table">
-          <thead id="stats">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Kiedy</th>
-              <th scope="col">Kto</th>
-            </tr>
-          </thead>
-          <tbody id="stats">
-          </tbody>
-        </table>
       </div>
-
     </div>
   </div>
 
@@ -87,8 +89,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-
-  <script src="flatpickr/flatpickr.js"></script>
 
   <script src="cookies.js"></script>
   <script src="index.js"></script>
