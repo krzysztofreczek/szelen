@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Szelen</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+  <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
+</head>
+
+<body onload="">
+  <main class="container valign-wrapper">
+    <!-- <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">person</i>
+        <select>
+          <option value="" disabled selected>Kto tam?</option>
+          <option value="Ania">Ania</option>
+          <option value="Basia">Basia</option>
+          <option value="Majkel">Majkel</option>
+          <option value="Krzysio">Krzysio</option>
+        </select>
+        <label>Zaloguj się aby przejść dalej:</label>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="input-field col s12">
+        <h2>Witaj!</h2>
+      </div>
+      <div class="col s12">
+        <canvas id="main-chart" height="240vw"></canvas>
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">date_range</i>
+        <input type="text" value="Aug 07, 2020" class="datepicker">
+        <label>Czy chcesz dodać nowy trening?</label>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row row-footer">
+          <div class="col s4">
+            <!-- <a class="left btn-floating btn-large btn-flat"><i class="material-icons left">arrow_back</i></a> -->
+          </div>
+          <div class="col s4 center-align">
+            <a class="btn-floating btn-large"><i class="material-icons">check</i></a>
+          </div>
+          <div class="col s4">
+            <!-- <a class="right btn-floating btn-large btn-flat"><i class="material-icons">data_usage</i></a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/chart.min.js"></script>
+  <script>
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, {});
+
+    var ctx = document.getElementById("main-chart").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        // labels: ['Red', 'Blue', 'Yellow'],
+        datasets: [{
+          label: '# of Votes',
+          data: [4, 1, 1],
+          backgroundColor: [
+            '#51cda0',
+            '#6d78ad',
+            '#df7970',
+          ]
+        }]
+      }
+    });
+  </script>
+</body>
+
+</html>
