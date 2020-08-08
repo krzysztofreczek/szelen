@@ -1,26 +1,28 @@
 'use strict';
 
+var inputUser
+var inputTrainingDate
+
 function initialize() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, {});
+  initializeElements()
 
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, {});
+  user = cookies.get("user")
+  
+  if (userSet()) {
+    switchToPage(pageAddTraining)
+  } else {
+    switchToPage(pageWelcome)
+  }
+}
 
-    var ctx = document.getElementById("main-chart").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        // labels: ['Red', 'Blue', 'Yellow'],
-        datasets: [{
-          label: '# of Votes',
-          data: [4, 1, 1],
-          backgroundColor: [
-            '#51cda0',
-            '#6d78ad',
-            '#df7970',
-          ]
-        }]
-      }
-    });
+function initializeElements() {
+  var elements = M.FormSelect.init(document.querySelectorAll('select'), {});
+  inputUser = elements[0]
+
+  elements = M.Datepicker.init(document.querySelectorAll('.datepicker'), {});
+  inputTrainingDate = elements[0]
+}
+
+function addTraining() {
+
 }
