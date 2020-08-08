@@ -1,6 +1,8 @@
 'use strict';
 
 function initialize() {
+    initializeFloatingButtons()
+
     loadEvents()
     analyzeData()
 
@@ -11,4 +13,9 @@ function initialize() {
     } else {
         switchToPage(pageWelcome)
     }
+}
+
+function initializeFloatingButtons() {
+    var buttons = document.querySelectorAll('.fixed-action-btn');
+    M.FloatingActionButton.init(buttons, {});
 }
