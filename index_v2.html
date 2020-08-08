@@ -12,9 +12,9 @@
   <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
 </head>
 
-<body onload="">
+<body onload="initialize()">
   <main class="container valign-wrapper">
-    <div class="row" style="display: none">
+    <div id="page-welcome" class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">person</i>
         <select>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div id="page-add-training" class="row" style="display: none">
       <div class="input-field col s12">
         <h2>Witaj!</h2>
       </div>
@@ -51,15 +51,13 @@
     <div class="footer-copyright">
       <div class="container">
         <div class="row row-footer">
-          <div class="col s4">
-            <a class="left btn-floating btn-large btn-flat"><i class="material-icons">data_usage</i></a>
-            <!-- <a class="left btn-floating btn-large btn-flat"><i class="material-icons left">arrow_back</i></a> -->
+          <div class="col s6">
+            <a id="btn-back" class="left btn-floating btn-large btn-flat" style="display: none"><i class="material-icons left">arrow_back</i></a>
+            <a id="btn-summary" class="left btn-floating btn-large btn-flat" style="display: none"><i class="material-icons">data_usage</i></a>
           </div>
-          <div class="col s4 center-align">
-          </div>
-          <div class="col s4">
-            <a class="right btn-floating btn-large btn-flat"><i class="material-icons">add</i></a>
-            <!-- <a class="right btn-floating btn-large btn-flat"><i class="material-icons">check</i></a> -->
+          <div class="col s6">
+            <a id="btn-add" class="right btn-floating btn-large btn-flat" style="display: none"><i class="material-icons">add</i></a>
+            <a id="btn-check" class="right btn-floating btn-large btn-flat"><i class="material-icons">check</i></a>
           </div>
         </div>
       </div>
@@ -68,30 +66,7 @@
 
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/chart.min.js"></script>
-  <script>
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, {});
-
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, {});
-
-    var ctx = document.getElementById("main-chart").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        // labels: ['Red', 'Blue', 'Yellow'],
-        datasets: [{
-          label: '# of Votes',
-          data: [4, 1, 1],
-          backgroundColor: [
-            '#51cda0',
-            '#6d78ad',
-            '#df7970',
-          ]
-        }]
-      }
-    });
-  </script>
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
