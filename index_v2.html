@@ -13,7 +13,7 @@
 </head>
 
 <body onload="initialize()">
-  <main class="container valign-wrapper">
+  <main id="container-main-page" class="container valign-wrapper">
     <div id="page-welcome" class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">person</i>
@@ -30,7 +30,7 @@
 
     <div id="page-add-training" class="row" style="display: none">
       <div class="input-field col s12">
-        <h3 id="header-greeting">Witaj!</h3>
+        <h4 id="header-greeting">Witaj!</h4>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">date_range</i>
@@ -44,7 +44,94 @@
         <div id="progress-bar-label" class="right">3/4</div>
       </div>
     </div>
+  </main>
 
+  <main id="container-summary" class="container">
+    <div id="page-summary" class="row" style="display: none">
+      <div class="input-field col s12 center-align">
+        <h4>Obecny tydzień</h4>
+      </div>
+      <div class="input-field col s12">
+        <canvas id="chart-my-week" height="200%"></canvas>
+      </div>
+      <div class="input-field col m4 s12">
+        <canvas id="chart-1-week" height="200%"></canvas>
+      </div>
+      <div class="input-field col m4 s12">
+        <canvas id="chart-2-week" height="200%"></canvas>
+      </div>
+      <div class="input-field col m4 s12">
+        <canvas id="chart-3-week" height="200%"></canvas>
+      </div>
+      <div class="col s12">
+        <table class="centered">
+          <thead>
+            <tr>
+              <th width="33%">Twoje</th>
+              <th width="33%">Wszystkie</th>
+              <th width="33%">Liderzy</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td id="weekly-yours">?</td>
+              <td id="weekly-total">?</td>
+              <td id="weekly-leaders">?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="input-field col s12 center-align">
+        <h4>Udział wszystkich osób</h4>
+      </div>
+      <div class="input-field col s12">
+        <canvas id="chart-all" height="150%"></canvas>
+      </div>
+
+      <div class="input-field col s12 center-align">
+        <h4>Od początku</h4>
+      </div>
+      <div class="col s12">
+        <table class="centered">
+          <thead>
+            <tr>
+              <th width="33%">Twoje</th>
+              <th width="33%">Wszystkie</th>
+              <th width="33%">Liderzy</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td id="all-yours">?</td>
+              <td id="all-total">?</td>
+              <td id="all-leaders">?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="input-field col s12 center-align">
+        <h4>Wszystkie tygodnie</h4>
+      </div>
+      <div class="col s12">
+        <table class="centered">
+          <thead>
+            <tr>
+              <th width="33%">#</th>
+              <th width="33%">Tydzień</th>
+              <th width="33%">Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="table-all-weeks">
+          </tbody>
+        </table>
+      </div>
+    </div>
   </main>
 
   <footer class="page-footer">
@@ -52,11 +139,14 @@
       <div class="container">
         <div class="row row-footer">
           <div class="col s6">
-            <a id="btn-back" class="left btn-floating btn-large btn-flat" style="display: none"><i class="material-icons left">arrow_back</i></a>
-            <a id="btn-summary" class="left btn-floating btn-large btn-flat" style="display: none"><i class="material-icons">data_usage</i></a>
+            <a id="btn-back" class="left btn-floating btn-large btn-flat" style="display: none"><i
+                class="material-icons left">arrow_back</i></a>
+            <a id="btn-summary" class="left btn-floating btn-large btn-flat" style="display: none"><i
+                class="material-icons">data_usage</i></a>
           </div>
           <div class="col s6">
-            <a id="btn-add" class="right btn-floating btn-large btn-flat" style="display: none"><i class="material-icons">add</i></a>
+            <a id="btn-add" class="right btn-floating btn-large btn-flat" style="display: none"><i
+                class="material-icons">add</i></a>
             <a id="btn-check" class="right btn-floating btn-large btn-flat"><i class="material-icons">check</i></a>
           </div>
         </div>
@@ -80,6 +170,7 @@
   <script type="text/javascript" src="js/greetings.js"></script>
   <script type="text/javascript" src="js/user.js"></script>
   <script type="text/javascript" src="js/trainings.js"></script>
+  <script type="text/javascript" src="js/summary.js"></script>
   <script type="text/javascript" src="js/pages.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>

@@ -6,7 +6,7 @@ body {
 
 @media (min-width: 768px) {
     .container {
-        width: 500px;
+        width: 600px;
     }
 }
 
@@ -43,4 +43,18 @@ canvas {
 
 .page-footer {
     padding-top: 0%;
+}
+
+.week-done {
+    color: #26a69a;
+    font-weight: bold;
+}
+
+.week-failed {
+    color: #ff8a80;
+    font-weight: bold;
+}
+
+.week-pending {
+    color: #000000;
 }

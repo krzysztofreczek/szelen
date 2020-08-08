@@ -2,10 +2,20 @@
 
 const pageWelcome = 'page-welcome'
 const pageAddTraining = 'page-add-training'
+const pageSummary = 'page-summary'
 
 var pages = [
     pageWelcome,
     pageAddTraining,
+    pageSummary,
+]
+
+const containerMainPage = 'container-main-page'
+const containerSummary = 'container-summary'
+
+var containers = [
+    containerMainPage,
+    containerSummary,
 ]
 
 const btnBack = 'btn-back'
@@ -23,6 +33,7 @@ var buttons = [
 var pageConfig = {
     'page-welcome': {
         id: pageWelcome,
+        wrapperId: containerMainPage,
         initFunc: pageCheckInInit,
         buttons: [
             {
@@ -33,19 +44,27 @@ var pageConfig = {
     },
     'page-add-training': {
         id: pageAddTraining,
+        wrapperId: containerMainPage,
         initFunc: pageAddTrainingInit,
         buttons: [
             {
-                id: btnBack,
-                func: function () { switchToPage(pageWelcome) }
-            },
-            {
                 id: btnSummary,
-                func: function () { switchToPage(pageWelcome) }
+                func: function () { switchToPage(pageSummary) }
             },
             {
                 id: btnAdd,
                 func: addTraining
+            }
+        ]
+    },
+    'page-summary': {
+        id: pageSummary,
+        wrapperId: containerSummary,
+        initFunc: pageSummaryInit,
+        buttons: [
+            {
+                id: btnBack,
+                func: function () { switchToPage(pageAddTraining) }
             }
         ]
     }
@@ -53,9 +72,11 @@ var pageConfig = {
 
 function switchToPage(toPage) {
     hideAllPages()
+    hideAllContainers()
     hideAllButtons()
 
     var c = pageConfig[toPage]
+    showElement(c.wrapperId)
     showElement(c.id)
 
     c.initFunc()
@@ -73,6 +94,13 @@ function hideAllPages() {
     }
 }
 
+function hideAllContainers() {
+    for (var c of containers) {
+        var container = document.getElementById(c)
+        container.style.display = 'none'
+    }
+}
+
 function hideAllButtons() {
     for (var b of buttons) {
         var button = document.getElementById(b)
@@ -82,7 +110,7 @@ function hideAllButtons() {
 
 function showElement(id) {
     var page = document.getElementById(id)
-    page.style.display = 'block'
+    page.style.display = ''
 }
 
 function bindButton(id, f) {
