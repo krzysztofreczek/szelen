@@ -5,8 +5,15 @@ add_event:
 	@test $(EVENT_USER) || ( echo "EVENT_USER not set" & exit 1 )
 	@test $(EVENT_TIMESTAMP) || ( echo "EVENT_TIMESTAMP not set" & exit 2 )
 	@test $(CIRCLE_BUILD_NUM) || ( echo "CIRCLE_BUILD_NUM not set" & exit 3 )
+	
 	@echo "Adding event:"
 	echo "${EVENT_TIMESTAMP}:${EVENT_USER}" >> ./db/events_$$(($(CIRCLE_BUILD_NUM) % 4))
+	@echo "...done"
+
+	@echo "Adding event to JS files:"
+	sed -e $'s|{}|{date:"'${EVENT_TIMESTAMP}'",user:"'${EVENT_USER}'"},\\\n{}|g' events.$$(($(CIRCLE_BUILD_NUM) % 4)).js > events._.js
+	cat events._.js > events.$$(($(CIRCLE_BUILD_NUM) % 4)).js
+	rm events._.js
 	@echo "...done"
 
 .PHONY: push

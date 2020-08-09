@@ -40,6 +40,10 @@ function loadPersistedEvents() {
 }
 
 function loadPersistedEvent(e) {
+    if (!e) {
+        return
+    } 
+    
     addEvent({
         timestamp: new Date(e.date),
         user: e.user,
