@@ -17,11 +17,17 @@ function analyzeData() {
         leaders: "",
         leaderTotal: 0,
     }
+    thisWeekStatistics[user] = {
+        total: 0
+    }
     
     totalStatistics = {
         total: 0,
         leaders: "",
         leaderTotal: 0,
+    }
+    totalStatistics[user] = {
+        total: 0
     }
 
     for (var e of events) {
