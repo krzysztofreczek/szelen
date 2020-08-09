@@ -25,6 +25,9 @@ function loadCookiesEvents() {
 }
 
 function loadPersistedEvents() {
+    for (var e of events_0) {
+        loadPersistedEvent(e)
+    }
     for (var e of events_1) {
         loadPersistedEvent(e)
     }
@@ -32,9 +35,6 @@ function loadPersistedEvents() {
         loadPersistedEvent(e)
     }
     for (var e of events_3) {
-        loadPersistedEvent(e)
-    }
-    for (var e of events_4) {
         loadPersistedEvent(e)
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var events_1 = [
+var events_0 = [
 {date:"2020/04/27",user:"Krzysio"},
 {date:"2020/04/29",user:"Krzysio"},
 {date:"2020/04/27",user:"Ania"},
