@@ -13,12 +13,12 @@ function loadCookiesEvents() {
     for (var e of recentEvents) {
         if (!e) {
             continue
-        } 
+        }
 
         var w = e.split(":")
         var date = w[0]
         var user = w[1]
-        
+
         if (!date || !user) {
             continue
         }
@@ -50,13 +50,13 @@ function loadPersistedEvents() {
 function loadPersistedEvent(e) {
     if (!e || !e.user || !e.date) {
         return
-    } 
+    }
 
     var event = {
         timestamp: new Date(e.date),
         user: e.user,
     }
-    
+
     addEvent(event)
 }
 
@@ -84,4 +84,35 @@ function eventsEqual(e1, e2) {
     }
 
     return true
+}
+
+function persistEvent(user, timestamp, callback) {
+    var xhr = new XMLHttpRequest()
+    var url = 'https://cors-anywhere.herokuapp.com/circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
+    xhr.open("POST", url, true)
+
+    xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
+    xhr.setRequestHeader("Content-type", "application/json")
+    xhr.setRequestHeader("origin", "krzysztofreczek.github.io")
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 201) {
+            persistEventInCookies(user, timestamp)
+            callback()
+        }
+    }
+
+    var payload = `{"build_parameters" : {"CIRCLE_JOB" : "add_event", "EVENT_USER" : "` + user + `", "EVENT_TIMESTAMP" : "` + timestamp + `" }}`
+    xhr.send(payload)
+}
+
+function persistEventInCookies(user, timestamp) {
+    var recentEvents = cookies.get('recentEvents')
+
+    if (recentEvents != "") {
+        recentEvents += ","
+    }
+    recentEvents += timestamp + ":" + user
+
+    cookies.set("recentEvents", recentEvents, 1)
 }

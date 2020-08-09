@@ -4,21 +4,26 @@ var challengeWeeklyGoal = 4
 var challengeStartMonday = new Date("2020/04/27")
 var today = new Date()
 
-var thisWeekStatistics = {
-    total: 0,
-    leaders: "",
-    leaderTotal: 0,
-}
+var thisWeekStatistics = {}
 
-var totalStatistics = {
-    total: 0,
-    leaders: "",
-    leaderTotal: 0,
-}
+var totalStatistics = {}
 
 function analyzeData() {
     var today = getToday()
     var monday = getMonday(today)
+
+    thisWeekStatistics = {
+        total: 0,
+        leaders: "",
+        leaderTotal: 0,
+    }
+    
+    totalStatistics = {
+        total: 0,
+        leaders: "",
+        leaderTotal: 0,
+    }
+
     for (var e of events) {
         if (e.timestamp >= monday) {
             thisWeekStatistics = updateStats(thisWeekStatistics, e)
