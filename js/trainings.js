@@ -6,8 +6,14 @@ function pageAddTrainingInit() {
     loadCookiesEvents()
     analyzeData()
 
-    var elements = M.Datepicker.init(document.querySelectorAll('.datepicker'), {});
+    var elements = M.Datepicker.init(document.querySelectorAll('.datepicker'), {
+        format: 'ddd mmm dd yyyy'
+    });
     inputTrainingDate = elements[0]
+
+    var today = new Date()
+    inputTrainingDate.setDate(today)
+    inputTrainingDate.el.value = today.toDateString()
 
     var h = document.getElementById('header-greeting')
     h.innerHTML = getRandomGreeting(user)
@@ -23,14 +29,13 @@ function pageAddTrainingInit() {
 }
 
 function addTraining() {
-    var dateString = inputTrainingDate.el.value
+    var date = inputTrainingDate.date
 
-    if (!dateString) {
+    if (!date) {
         inputTrainingDate.el.classList.add('invalid')
         return
     }
 
-    var date = new Date(dateString)
     var timestamp = date.getFullYear() + '/' + (date.getMonth() + 1) + "/" + date.getDate()
     persistEvent(user, timestamp, function() {
         switchToPage(pageAddTraining)
