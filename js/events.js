@@ -11,16 +11,24 @@ function loadCookiesEvents() {
     var recentEvents = cookies.get('recentEvents').split(",")
 
     for (var e of recentEvents) {
-        if (e == "") {
+        if (!e) {
+            continue
+        } 
+
+        var w = e.split(":")
+        var date = w[0]
+        var user = w[1]
+        
+        if (!date || !user) {
             continue
         }
 
-        var w = e.split(":")
+        var event = {
+            timestamp: new Date(date),
+            user: user,
+        }
 
-        addEvent({
-            timestamp: new Date(w[0]),
-            user: w[1],
-        })
+        addEvent(event)
     }
 }
 
@@ -40,14 +48,16 @@ function loadPersistedEvents() {
 }
 
 function loadPersistedEvent(e) {
-    if (!e) {
+    if (!e || !e.user || !e.date) {
         return
     } 
-    
-    addEvent({
+
+    var event = {
         timestamp: new Date(e.date),
         user: e.user,
-    })
+    }
+    
+    addEvent(event)
 }
 
 function addEvent(event) {
