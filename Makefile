@@ -11,9 +11,7 @@ add_event:
 	@echo "...done"
 
 	@echo "Adding event to JS files:"
-	sed -e $$'s|{}|{date:"${EVENT_TIMESTAMP}",user:"${EVENT_USER}"},\\\n{}|g' ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js > _events.js && \
-		cat _events.js > ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js && \
-		rm _events.js
+	sed -i -e $$'s/{}/{date:"${EVENT_TIMESTAMP}",user:"${EVENT_USER}"},\\\n{}/g' ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js
 	@echo "...done"
 
 .PHONY: push
