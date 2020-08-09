@@ -15,7 +15,7 @@ function loadCookiesEvents() {
             continue
         }
 
-        w = e.split(":")
+        var w = e.split(":")
 
         addEvent({
             timestamp: new Date(w[0]),
