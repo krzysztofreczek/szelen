@@ -28,5 +28,5 @@ function checkIn() {
 }
 
 function userSet() {
-    return user != 'Kto tam?' && user != ''
+    return user != 'Wybierz z listy...' && user != ''
 }

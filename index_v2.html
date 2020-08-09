@@ -13,12 +13,15 @@
 </head>
 
 <body onload="initialize()">
-  <main id="container-main-page" class="container valign-wrapper">
+  <main id="container-main-page" class="container">
     <div id="page-welcome" class="row">
+      <div class="input-field col s12">
+        <h4>Kto tam?</h4>
+      </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">person</i>
         <select>
-          <option value="" disabled selected>Kto tam?</option>
+          <option value="" disabled selected>Wybierz z listy...</option>
           <option value="Ania">Ania</option>
           <option value="Basia">Basia</option>
           <option value="Majkel">Majkel</option>
@@ -49,7 +52,7 @@
   <main id="container-summary" class="container">
     <div id="page-summary" class="row" style="display: none">
       <div class="input-field col s12 center-align">
-        <h4>Obecny tydzień</h4>
+        <h3>Obecny tydzień</h3>
       </div>
       <div class="input-field col s12">
         <canvas id="chart-my-week" height="200%"></canvas>
@@ -84,14 +87,14 @@
       </div>
 
       <div class="input-field col s12 center-align">
-        <h4>Udział wszystkich osób</h4>
+        <h3>Udział wszystkich osób</h3>
       </div>
       <div class="input-field col s12">
         <canvas id="chart-all" height="150%"></canvas>
       </div>
 
       <div class="input-field col s12 center-align">
-        <h4>Od początku</h4>
+        <h3>Od początku</h3>
       </div>
       <div class="col s12">
         <table class="centered">
@@ -114,7 +117,7 @@
       </div>
 
       <div class="input-field col s12 center-align">
-        <h4>Wszystkie tygodnie</h4>
+        <h3>Wszystkie tygodnie</h3>
       </div>
       <div class="col s12">
         <table class="centered">

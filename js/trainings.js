@@ -20,5 +20,5 @@ function pageAddTrainingInit() {
 }
 
 function addTraining() {
-    
+    alert("To jeszcze nie działa:)");
 }
