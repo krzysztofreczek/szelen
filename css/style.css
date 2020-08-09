@@ -61,6 +61,15 @@ canvas {
     padding-top: 0%;
 }
 
+.container-gif {
+    height: 100%;
+    width: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .week-done {
     color: #26a69a;
     font-weight: bold;

@@ -14,10 +14,12 @@ var pages = [
 
 const containerMainPage = 'container-main-page'
 const containerSummary = 'container-summary'
+const containerGif = 'container-gif'
 
 var containers = [
     containerMainPage,
     containerSummary,
+    containerGif,
 ]
 
 const btnBack = 'btn-back'
@@ -78,8 +80,8 @@ var pageConfig = {
     },
     'page-gif': {
         id: pageGif,
-        wrapperId: containerMainPage,
-        initFunc: function () {},
+        wrapperId: containerGif,
+        initFunc: pageGifInit,
         buttons: [
             {
                 id: btnBack,
