@@ -13,6 +13,7 @@ add_event:
 	@echo "Adding event to JS files:"
 	sed -e $$'s|{}|{date:"${EVENT_TIMESTAMP}",user:"${EVENT_USER}"},\\\n{}|g' ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js > .events.js && \
 		cat .events.js > ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js && \
+		cat .events.js && \
 		rm .events.js
 	@echo "...done"
 
