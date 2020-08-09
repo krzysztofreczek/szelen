@@ -3,11 +3,13 @@
 const pageWelcome = 'page-welcome'
 const pageAddTraining = 'page-add-training'
 const pageSummary = 'page-summary'
+const pageGif = 'page-gif'
 
 var pages = [
     pageWelcome,
     pageAddTraining,
     pageSummary,
+    pageGif,
 ]
 
 const containerMainPage = 'container-main-page'
@@ -20,12 +22,14 @@ var containers = [
 
 const btnBack = 'btn-back'
 const btnSummary = 'btn-summary'
+const btnGif = 'btn-gif'
 const btnAdd = 'btn-add'
 const btnCheck = 'btn-check'
 
 var buttons = [
     btnBack,
     btnSummary,
+    btnGif,
     btnAdd,
     btnCheck,
 ]
@@ -52,6 +56,10 @@ var pageConfig = {
                 func: function () { switchToPage(pageSummary) }
             },
             {
+                id: btnGif,
+                func: function () { switchToPage(pageGif) }
+            },
+            {
                 id: btnAdd,
                 func: addTraining
             }
@@ -61,6 +69,17 @@ var pageConfig = {
         id: pageSummary,
         wrapperId: containerSummary,
         initFunc: pageSummaryInit,
+        buttons: [
+            {
+                id: btnBack,
+                func: function () { switchToPage(pageAddTraining) }
+            }
+        ]
+    },
+    'page-gif': {
+        id: pageGif,
+        wrapperId: containerMainPage,
+        initFunc: function () {},
         buttons: [
             {
                 id: btnBack,
