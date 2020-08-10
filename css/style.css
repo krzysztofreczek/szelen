@@ -40,6 +40,12 @@ canvas {
     margin-bottom: 3rem;
 }
 
+.chart-container {
+    height: 22em; 
+    width: 100%;
+    margin-bottom: 2em;
+}
+
 .fixed-action-btn {
     bottom: 0px;
     width: 100%;
@@ -59,6 +65,10 @@ canvas {
 
 .page-footer {
     padding-top: 0%;
+}
+
+table {
+    margin-bottom: 2em;
 }
 
 .week-done {

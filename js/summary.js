@@ -20,11 +20,14 @@ function pageSummaryInit() {
 
 function initCharts() {
     initWeekDoughnutChart('chart-my-week', user)
-    initAuxWeekDoughnutChart()
+    initWeekAuxDoughnutCharts()
+    initWeekAllChart()
     initAllChart()
+    initTimeChart()
+    initWeekDaysChart()
 }
 
-function initAuxWeekDoughnutChart() {
+function initWeekAuxDoughnutCharts() {
     var i = 1
     for (var u of users) {
         if (u == user) {
@@ -80,12 +83,12 @@ function initWeekDoughnutChart(id, user) {
             legend: {
                 display: false
             },
-            cutoutPercentage: 65
+            cutoutPercentage: 70
         }
     });
 }
 
-function initAllChart() {
+function initWeekAllChart() {
     var labels = []
     var data = []
     var bgColors = []
@@ -100,7 +103,51 @@ function initAllChart() {
     }
 
     if (data.length == 0) {
-        labels.push("")
+        labels.push('')
+        data.push(1)
+        bgColors.push(colorDefault)
+    }
+
+    var ctx = document.getElementById('chart-all-week').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: bgColors,
+                hoverBackgroundColor: bgColors
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Wszyscy w tym tygodniu'
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 70
+        }
+    });
+}
+
+function initAllChart() {
+    var labels = []
+    var data = []
+    var bgColors = []
+
+    for (var u of users) {
+        if (!totalStatistics[u]) {
+            continue
+        }
+        labels.push(u)
+        data.push(totalStatistics[u].total)
+        bgColors.push(colors[u])
+    }
+
+    if (data.length == 0) {
+        labels.push('')
         data.push(1)
         bgColors.push(colorDefault)
     }
@@ -117,12 +164,157 @@ function initAllChart() {
             }]
         },
         options: {
+            title: {
+                display: true,
+                text: 'Wszyscy'
+            },
             legend: {
                 display: false
             },
-            cutoutPercentage: 65
+            cutoutPercentage: 70
         }
     });
+}
+
+function initTimeChart() {
+    var today = getToday()
+    var threeWeeksAgo = new Date()
+    threeWeeksAgo.setDate(today.getDate() - 22)
+
+    var dataPoints = {}
+    for (var e of events) {
+        if (e.timestamp < threeWeeksAgo) {
+            continue
+        }
+
+        if (!dataPoints[e.user]) {
+            dataPoints[e.user] = []
+        }
+
+        var dataPoint = {
+            x: e.timestamp,
+            y: 1,
+        }
+
+        dataPoints[e.user].push(dataPoint)
+    }
+
+    var data = []
+    for (var u of users) {
+        var d = {
+            type: 'stackedColumn',
+            showInLegend: true,
+            color: colors[u],
+            name: u,
+            dataPoints: dataPoints[u]
+        }
+
+        data.push(d)
+    }
+
+    var chart = new CanvasJS.Chart('chart-time', {
+        animationEnabled: true,
+        axisX: {
+            interval: 3,
+            intervalType: 'day',
+            tickColor: colorDefault,
+            lineColor: colorDefault,
+            gridThickness: 0
+        },
+        axisY: {
+            gridThickness: 0,
+            tickThickness: 0,
+            lineThickness: 0,
+            labelFontColor: 'white'
+        },
+        data: data,
+    })
+    chart.render()
+}
+
+function initWeekDaysChart() {
+    var userWeekdayStats = {}
+
+    for (var e of events) {
+        if (!userWeekdayStats[e.user]) {
+            userWeekdayStats[e.user] = {}
+        }
+
+        var weekday = getWeekdayName(e.timestamp)
+        if (!userWeekdayStats[e.user][weekday]) {
+            userWeekdayStats[e.user][weekday] = 0
+        }
+
+        userWeekdayStats[e.user][weekday]++
+    }
+
+    var dataPoints = []
+
+    var i = -1
+    for (var u of users) {
+        i++
+
+        if (!userWeekdayStats[u]) {
+            continue
+        }
+
+        var j = -1
+        for (var wd of weekdayNames) {
+            j++
+
+            if (!userWeekdayStats[u][wd]) {
+                continue
+            }
+
+            var value = userWeekdayStats[u][wd]
+
+            var dp = {
+                x: j,
+                y: i,
+                z: value,
+                color: colors[u],
+                user: u,
+                day: wd
+            }
+
+            dataPoints.push(dp)
+        }
+    }
+
+    var chart = new CanvasJS.Chart('chart-week-days', {
+        animationEnabled: true,
+        theme: 'light2',
+        axisX: {
+            minimum: -1,
+            maximum: 7,
+            gridThickness: 0,
+            labelFontColor: 'black',
+            labelFormatter: function (e) {
+                if (!weekdayNames[e.value]) {
+                    return ''
+                }
+                return weekdayNames[e.value]
+            }
+        },
+        axisY: {
+            minimum: -1,
+            maximum: 4,
+            gridThickness: 0,
+            labelFontColor: 'black',
+            labelFormatter: function (e) {
+                if (!users[e.value]) {
+                    return ''
+                }
+                return users[e.value]
+            }
+        },
+        data: [{
+            type: 'bubble',
+            toolTipContent: 'Dzień: {day}<br/> Osoba: {user}<br/> Ilość: {z}',
+            dataPoints: dataPoints
+        }]
+    });
+    chart.render();
 }
 
 function initLabels() {

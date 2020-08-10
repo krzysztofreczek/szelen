@@ -15,3 +15,17 @@ function getAddDays(date, days) {
   result.setDate(result.getDate() + days);
   return result;
 }
+
+var weekdayNames = [
+  'Niedziela',
+  'Poniedziałek',
+  'Wtorek',
+  'Środa',
+  'Czwartek',
+  'Piątek',
+  'Sobota'
+]
+
+function getWeekdayName(d) {
+  return weekdayNames[d.getDay()]
+}

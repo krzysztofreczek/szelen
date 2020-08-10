@@ -10,6 +10,13 @@
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
   <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
+
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/chart.min.js"></script>
+
+  <script type="text/javascript" src="js/utils.js"></script>
+  <script type="text/javascript" src="js/cookies.js"></script>
+  <script type="text/javascript" src="js/confetti.js"></script>
 </head>
 
 <body onload="initialize()">
@@ -52,7 +59,7 @@
   <main id="container-gif" class="container valign-wrapper">
     <div id="page-gif" class="row" style="display: none">
       <div class="col s12">
-        <img id="gif" class="responsive-img" src="images/runner.gif">
+        <img id="gif" class="responsive-img" src="">
       </div>
     </div>
   </main>
@@ -94,15 +101,15 @@
         </table>
       </div>
 
-      <div class="col s12 center-align">
-        <h3>Udział wszystkich osób</h3>
-      </div>
       <div class="col s12">
-        <canvas id="chart-all" height="150%"></canvas>
+        <canvas id="chart-all-week" height="150%"></canvas>
       </div>
 
       <div class="col s12 center-align">
         <h3>Od początku</h3>
+      </div>
+      <div class="col s12">
+        <div id="chart-time" class="chart-container"></div>
       </div>
       <div class="col s12">
         <table class="centered">
@@ -122,6 +129,13 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="col s12">
+        <canvas id="chart-all" height="150%"></canvas>
+      </div>
+
+      <div class="col s12">
+        <div id="chart-week-days" class="chart-container"></div>
       </div>
 
       <div class="col s12 center-align">
@@ -168,12 +182,7 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/chart.min.js"></script>
-
-  <script type="text/javascript" src="js/utils.js"></script>
-  <script type="text/javascript" src="js/cookies.js"></script>
-  <script type="text/javascript" src="js/confetti.js"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
   <script type="text/javascript" src="db/events.0.js"></script>
   <script type="text/javascript" src="db/events.1.js"></script>
