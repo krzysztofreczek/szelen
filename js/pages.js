@@ -92,6 +92,8 @@ var pageConfig = {
 }
 
 function switchToPage(toPage) {
+    resetPageBackground()
+    
     hideAllPages()
     hideAllContainers()
     hideAllButtons()
@@ -106,6 +108,10 @@ function switchToPage(toPage) {
         showElement(b.id)
         bindButton(b.id, b.func)
     }
+}
+
+function resetPageBackground() {
+    document.body.style.background = '';
 }
 
 function hideAllPages() {
