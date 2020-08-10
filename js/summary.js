@@ -99,6 +99,12 @@ function initAllChart() {
         bgColors.push(colors[u])
     }
 
+    if (data.length == 0) {
+        labels.push("")
+        data.push(1)
+        bgColors.push(colorDefault)
+    }
+
     var ctx = document.getElementById('chart-all').getContext('2d');
     new Chart(ctx, {
         type: 'doughnut',
@@ -144,85 +150,84 @@ function initTables() {
 
 function initWeekStatusesTable() {
     var weeks = {}
-  
+
     var weekStartDate = challengeStartMonday
     while (true) {
-      var weekLastDayDate = getAddDays(weekStartDate, 6)
-      var nextWeekStartDate = getAddDays(weekStartDate, 7)
-      weeks[weekStartDate.toDateString()] = {
-        start: weekStartDate,
-        last: weekLastDayDate,
-        nextWeek: nextWeekStartDate,
-      }
-      if (getToday() < nextWeekStartDate) {
-        break
-      }
-      weekStartDate = nextWeekStartDate
+        var weekLastDayDate = getAddDays(weekStartDate, 6)
+        var nextWeekStartDate = getAddDays(weekStartDate, 7)
+        weeks[weekStartDate.toDateString()] = {
+            start: weekStartDate,
+            last: weekLastDayDate,
+            nextWeek: nextWeekStartDate,
+        }
+        if (getToday() < nextWeekStartDate) {
+            break
+        }
+        weekStartDate = nextWeekStartDate
     }
-  
+
     for (var e of events) {
-      var eMonday = getMonday(e.timestamp)
-      var eWeek = weeks[eMonday.toDateString()]
-      if (!eWeek[e.user]) {
-        eWeek[e.user] = 0
-      }
-      eWeek[e.user]++
+        var eMonday = getMonday(e.timestamp)
+        var eWeek = weeks[eMonday.toDateString()]
+        if (!eWeek[e.user]) {
+            eWeek[e.user] = 0
+        }
+        eWeek[e.user]++
     }
-  
+
     var table = document.getElementById('table-all-weeks')
     table.innerHTML = ''
-  
+
     var i = 0
     for (var idx in weeks) {
-      var w = weeks[idx]
-  
-      var wStatus = 'SUKCES!'
-      var wClass = 'week-done'
-  
-      var losers = []
-      for (var u of users) {
-        if (!w[u] || w[u] < challengeWeeklyGoal) {
-          losers.push(u)
+        var w = weeks[idx]
+
+        var wStatus = 'SUKCES!'
+        var wClass = 'week-done'
+
+        var losers = []
+        for (var u of users) {
+            if (!w[u] || w[u] < challengeWeeklyGoal) {
+                losers.push(u)
+            }
         }
-      }
-  
-      if (losers.length != 0) {
-        wStatus = ''
-        for (var l of losers) {
-          if (wStatus != '') {
-            wStatus += ', '
-          }
-          wStatus += l
-        }
-        wStatus = 'PORAŻKA (' + wStatus + ') :('
-        wClass = 'week-failed'
-      }
-  
-      if (w.nextWeek > getToday()) {
+
         if (losers.length != 0) {
-          wStatus = '...'
-          wClass = 'week-pending'
-        } else {
-          setTimeout(function(){
-            confetti.start(5 * 1000)
-          }, 1500)
+            wStatus = ''
+            for (var l of losers) {
+                if (wStatus != '') {
+                    wStatus += ', '
+                }
+                wStatus += l
+            }
+            wStatus = 'PORAŻKA (' + wStatus + ') :('
+            wClass = 'week-failed'
         }
-      }
-  
-      var rowPosition = weeks.length - i
-      var row = table.insertRow(rowPosition)
-  
-      var idx = row.insertCell(0)
-      idx.innerHTML = i + 1
-      idx.classList.add('idx')
-  
-      row.insertCell(1).innerHTML = w.start.toLocaleDateString() + ' - ' + w.last.toLocaleDateString()
-  
-      var statusCell = row.insertCell(2)
-      statusCell.innerHTML = wStatus
-      statusCell.classList.add(wClass)
-  
-      i++
+
+        if (w.nextWeek > getToday()) {
+            if (losers.length != 0) {
+                wStatus = '...'
+                wClass = 'week-pending'
+            } else {
+                setTimeout(function () {
+                    confetti.start(5 * 1000)
+                }, 1500)
+            }
+        }
+
+        var rowPosition = weeks.length - i
+        var row = table.insertRow(rowPosition)
+
+        var idx = row.insertCell(0)
+        idx.innerHTML = i + 1
+        idx.classList.add('idx')
+
+        row.insertCell(1).innerHTML = w.start.toLocaleDateString() + ' - ' + w.last.toLocaleDateString()
+
+        var statusCell = row.insertCell(2)
+        statusCell.innerHTML = wStatus
+        statusCell.classList.add(wClass)
+
+        i++
     }
-  }
-  
+}
