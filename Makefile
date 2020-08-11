@@ -25,6 +25,3 @@ push:
 		git commit -m "Add event" && \
 		git push -q https://${GITHUB_TOKEN}@github.com/krzysztofreczek/szelen.git master
 	@echo "...done"
-
-test:
-	sed -i 's#{}#{date:\"${EVENT_TIMESTAMP}\",user:\"${EVENT_USER}\"},\n{}#g' ./db/events.1.js
