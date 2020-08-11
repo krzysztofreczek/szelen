@@ -38,11 +38,8 @@ function addTraining() {
 
     var timestamp = date.getFullYear() + '/' + (date.getMonth() + 1) + "/" + date.getDate()
     persistEvent(user, timestamp, function() {
-        switchToPage(pageAddTraining)
+        pageGifEnable()
     })
 
-    confetti.start(2 * 1000)
-
-    var button = document.getElementById('btn-add')
-    button.style.display = 'none'
+    switchToPage(pageGif)
 }

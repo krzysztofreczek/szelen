@@ -160,23 +160,48 @@
         <h5>...</h5>
       </div>
     </div>
+
+    <div id="page-list" class="row" style="display: none">
+      <div class="col s12">
+        <table class="centered">
+          <thead>
+            <tr>
+              <th width="33%">#</th>
+              <th width="33%">Kiedy</th>
+              <th width="33%">Kto</th>
+            </tr>
+          </thead>
+
+          <tbody id="table-all-trainings">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col s12 center-align">
+        <h5>...</h5>
+      </div>
+    </div>
   </main>
 
   <div class="fixed-action-btn red lighten-2">
     <div class="container">
       <div class="row row-footer">
-        <div class="col s6">
-          <a id="btn-back" class="left btn-floating btn-medium btn-flat" style="display: none"><i
-              class="material-icons left">arrow_back</i></a>
-          <a id="btn-summary" class="left btn-floating btn-medium btn-flat" style="display: none"><i
-              class="material-icons">data_usage</i></a>
-          <a id="btn-gif" class="left btn-floating btn-medium btn-flat" style="display: none"><i
-              class="material-icons">mood</i></a>
+        <div class="col s8">
+          <h6 id="btn-sending" class="white-text" style="display: none">Wysyłam....</h6>
+          <a id="btn-back" class="left btn-floating btn-medium btn-flat" style="display: none">
+            <i class="material-icons left">arrow_back</i></a>
+          <a id="btn-summary" class="left btn-floating btn-medium btn-flat" style="display: none">
+            <i class="material-icons">data_usage</i></a>
+          <a id="btn-list" class="left btn-floating btn-medium btn-flat" style="display: none">
+            <i class="material-icons">list</i></a>
         </div>
-        <div class="col s6">
-          <a id="btn-add" class="right btn-floating btn-medium btn-flat" style="display: none"><i
-              class="material-icons">add</i></a>
-          <a id="btn-check" class="right btn-floating btn-medium btn-flat"><i class="material-icons">check</i></a>
+        <div class="col s4">
+          <a id="btn-add" class="right btn-floating btn-medium btn-flat" style="display: none">
+            <i class="material-icons">add</i></a>
+          <a id="btn-check" class="right btn-floating btn-medium btn-flat">
+            <i class="material-icons">check</i></a>
+          <a id="btn-forward" class="right btn-floating btn-medium btn-flat" style="display: none">
+            <i class="material-icons">arrow_forward</i></a>
         </div>
       </div>
     </div>
@@ -196,6 +221,7 @@
   <script type="text/javascript" src="js/user.js"></script>
   <script type="text/javascript" src="js/trainings.js"></script>
   <script type="text/javascript" src="js/summary.js"></script>
+  <script type="text/javascript" src="js/list.js"></script>
   <script type="text/javascript" src="js/pages.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>

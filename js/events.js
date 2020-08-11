@@ -74,6 +74,18 @@ function addEvent(event) {
     }
 }
 
+function compareEvents(e1, e2) {
+    if (e1.timestamp > e2.timestamp) {
+        return -1
+    }
+
+    if (e1.timestamp == e2.timestamp) {
+        return 0
+    }
+
+    return 1
+}
+
 function eventsEqual(e1, e2) {
     if (e1.timestamp.toDateString() != e2.timestamp.toDateString()) {
         return false

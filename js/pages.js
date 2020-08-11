@@ -3,12 +3,14 @@
 const pageWelcome = 'page-welcome'
 const pageAddTraining = 'page-add-training'
 const pageSummary = 'page-summary'
+const pageList = 'page-list'
 const pageGif = 'page-gif'
 
 var pages = [
     pageWelcome,
     pageAddTraining,
     pageSummary,
+    pageList,
     pageGif,
 ]
 
@@ -23,17 +25,21 @@ var containers = [
 ]
 
 const btnBack = 'btn-back'
+const btnForward = 'btn-forward'
 const btnSummary = 'btn-summary'
-const btnGif = 'btn-gif'
+const btnList = 'btn-list'
 const btnAdd = 'btn-add'
 const btnCheck = 'btn-check'
+const btnSending = 'btn-sending'
 
 var buttons = [
     btnBack,
+    btnForward,
     btnSummary,
-    btnGif,
+    btnList,
     btnAdd,
     btnCheck,
+    btnSending,
 ]
 
 var pageConfig = {
@@ -58,8 +64,8 @@ var pageConfig = {
                 func: function () { switchToPage(pageSummary) }
             },
             {
-                id: btnGif,
-                func: function () { switchToPage(pageGif) }
+                id: btnList,
+                func: function () { switchToPage(pageList) }
             },
             {
                 id: btnAdd,
@@ -78,14 +84,30 @@ var pageConfig = {
             }
         ]
     },
+    'page-list': {
+        id: pageList,
+        wrapperId: containerSummary,
+        initFunc: pageListInit,
+        buttons: [
+            {
+                id: btnBack,
+                func: function () { switchToPage(pageAddTraining) }
+            }
+        ]
+    },
     'page-gif': {
         id: pageGif,
         wrapperId: containerGif,
         initFunc: pageGifInit,
         buttons: [
             {
-                id: btnBack,
-                func: function () { switchToPage(pageAddTraining) }
+                id: btnSending,
+                func: function () { }
+            },
+            {
+                id: btnForward,
+                func: function () { switchToPage(pageAddTraining) },
+                doNotShow: true
             }
         ]
     }
@@ -105,7 +127,9 @@ function switchToPage(toPage) {
     c.initFunc()
 
     for (var b of c.buttons) {
-        showElement(b.id)
+        if (!b.doNotShow) {
+            showElement(b.id)
+        }
         bindButton(b.id, b.func)
     }
 }

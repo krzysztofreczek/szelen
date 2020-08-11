@@ -17,3 +17,13 @@ function pageGifInit() {
     document.body.style.background = g.color;
     document.getElementById('gif').src = g.url
 }
+
+function pageGifEnable() {
+    confetti.start(2 * 1000)
+
+    var button = document.getElementById(btnSending)
+    button.style.display = 'none'
+
+    var button = document.getElementById(btnForward)
+    button.style.display = ''
+}
