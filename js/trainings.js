@@ -5,6 +5,7 @@ var inputTrainingDate
 function pageAddTrainingInit() {
     loadCookiesEvents()
     analyzeData()
+    computeAwards()
 
     var elements = M.Datepicker.init(document.querySelectorAll('.datepicker'), {
         format: 'ddd mmm dd yyyy'
