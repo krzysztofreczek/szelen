@@ -5,6 +5,8 @@ const pageAddTraining = 'page-add-training'
 const pageSummary = 'page-summary'
 const pageList = 'page-list'
 const pageGif = 'page-gif'
+const pageRandomGif = 'page-random-gif'
+const pageAwards = 'page-awards'
 
 var pages = [
     pageWelcome,
@@ -12,6 +14,7 @@ var pages = [
     pageSummary,
     pageList,
     pageGif,
+    pageAwards,
 ]
 
 const containerMainPage = 'container-main-page'
@@ -25,21 +28,25 @@ var containers = [
 ]
 
 const btnBack = 'btn-back'
+const btnBackGif = 'btn-back-gif'
 const btnForward = 'btn-forward'
 const btnSummary = 'btn-summary'
 const btnList = 'btn-list'
 const btnAdd = 'btn-add'
 const btnCheck = 'btn-check'
 const btnSending = 'btn-sending'
+const btnAwards = 'btn-awards'
 
 var buttons = [
     btnBack,
+    btnBackGif,
     btnForward,
     btnSummary,
     btnList,
     btnAdd,
     btnCheck,
     btnSending,
+    btnAwards,
 ]
 
 var pageConfig = {
@@ -66,6 +73,10 @@ var pageConfig = {
             {
                 id: btnList,
                 func: function () { switchToPage(pageList) }
+            },
+            {
+                id: btnAwards,
+                func: function () { switchToPage(pageAwards) }
             },
             {
                 id: btnAdd,
@@ -95,10 +106,32 @@ var pageConfig = {
             }
         ]
     },
+    'page-awards': {
+        id: pageAwards,
+        wrapperId: containerSummary,
+        initFunc: pageAwardsInit,
+        buttons: [
+            {
+                id: btnBackGif,
+                func: function () { switchToPage(pageAddTraining) }
+            }
+        ]
+    },
     'page-gif': {
         id: pageGif,
         wrapperId: containerGif,
         initFunc: pageGifInit,
+        buttons: [
+            {
+                id: btnBack,
+                func: function () { switchToPage(pageAwards) }
+            }
+        ]
+    },
+    'page-random-gif': {
+        id: pageGif,
+        wrapperId: containerGif,
+        initFunc: pageRandomGifInit,
         buttons: [
             {
                 id: btnSending,

@@ -42,5 +42,5 @@ function addTraining() {
         pageGifEnable()
     })
 
-    switchToPage(pageGif)
+    switchToPage(pageRandomGif)
 }

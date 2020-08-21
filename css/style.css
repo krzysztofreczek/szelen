@@ -85,3 +85,16 @@ table {
 .week-pending {
     color: #000000;
 }
+
+.img-circular{
+    height: 10em!important;
+    width: 10em!important;
+    margin: 1em auto;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    border-radius: 50%;
+    border-width: thick;
+    border-style: solid;
+    border-color: white;
+}
