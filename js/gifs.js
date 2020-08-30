@@ -10,7 +10,7 @@ var gifs = [
     { url: 'images/6.gif', color: 'rgb(243, 243, 243)' },
     { url: 'images/7.gif', color: 'rgb(251, 180, 113)' },
     { url: 'images/8.gif', color: 'rgb(134, 208, 221)' },
-    { url: 'images/9.gif', color: 'rgb(15, 75, 63)' },
+    { url: 'images/9.gif', color: 'rgb(163, 216, 224)' },
     { url: 'images/10.gif', color: 'rgb(134, 106, 163)' },
     { url: 'images/11.gif', color: 'rgb(255, 235, 235)' },
     { url: 'images/12.gif', color: 'rgb(250, 90, 66)' },
