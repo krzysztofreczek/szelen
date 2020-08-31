@@ -13,5 +13,6 @@ var events_3 = [
 {date:"2020/8/23",user:"Krzysio"},
 {date:"2020/8/28",user:"Krzysio"},
 {date:"2020/8/30",user:"Majkel"},
+{date:"2020/8/31",user:"Krzysio"},
 {}
 ]
