@@ -103,7 +103,7 @@ function initWeekAllChart() {
     }
 
     if (data.length == 0) {
-        labels.push('')
+        labels.push(' ')
         data.push(1)
         bgColors.push(colorDefault)
     }
@@ -147,7 +147,7 @@ function initAllChart() {
     }
 
     if (data.length == 0) {
-        labels.push('')
+        labels.push(' ')
         data.push(1)
         bgColors.push(colorDefault)
     }
