@@ -45,6 +45,12 @@ function loadPersistedEvents() {
     for (var e of events_3) {
         loadPersistedEvent(e)
     }
+    for (var e of events_4) {
+        loadPersistedEvent(e)
+    }
+    for (var e of events_5) {
+        loadPersistedEvent(e)
+    }
 }
 
 function loadPersistedEvent(e) {

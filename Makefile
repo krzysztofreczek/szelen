@@ -7,7 +7,7 @@ add_event:
 	@test $(CIRCLE_BUILD_NUM) || ( echo "CIRCLE_BUILD_NUM not set" & exit 3 )
 
 	@echo "Adding event to JS files:"
-	sed -i -e 's#{}#{date:\"${EVENT_TIMESTAMP}\",user:\"${EVENT_USER}\"},\n{}#g' ./db/events.$$(($(CIRCLE_BUILD_NUM) % 4)).js
+	sed -i -e 's#{}#{date:\"${EVENT_TIMESTAMP}\",user:\"${EVENT_USER}\"},\n{}#g' ./db/events.$$(($(CIRCLE_BUILD_NUM) % 6)).js
 	@echo "...done"
 
 .PHONY: push
