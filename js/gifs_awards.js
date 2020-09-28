@@ -17,7 +17,7 @@ function pageAwardsInit() {
     var i = awards[user].score
 
     var header = document.createElement('h3');
-    header.innerHTML = 'Masz ' + i + '/16 nagród!'
+    header.innerHTML = 'Masz ' + i + ' z 16 nagród!'
 
     var aDivWrapper = document.createElement('div');
     aDivWrapper.className = 'col s12 center-align';
