@@ -37,6 +37,12 @@ function addTraining() {
         return
     }
 
+    var today = getToday()
+    if (today < date) {
+        inputTrainingDate.el.classList.add('invalid')
+        return
+    }
+
     var timestamp = date.getFullYear() + '/' + (date.getMonth() + 1) + "/" + date.getDate()
     persistEvent(user, timestamp, function() {
         pageGifEnable()
