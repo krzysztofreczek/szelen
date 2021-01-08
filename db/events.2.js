@@ -101,5 +101,6 @@ var events_2 = [
 {date:"2021/1/3",user:"Majkel"},
 {date:"2021/1/6",user:"Basia"},
 {date:"2021/1/6",user:"Ania"},
+{date:"2021/1/8",user:"Krzysio"},
 {}
 ]
