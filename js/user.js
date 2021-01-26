@@ -27,6 +27,11 @@ function checkIn() {
     switchToPage(pageAddTraining)
 }
 
+function checkOut() {
+    cookies.set('user', '', 0)
+    switchToPage(pageWelcome)
+}
+
 function userSet() {
     return user != 'Wybierz z listy...' && user != ''
 }

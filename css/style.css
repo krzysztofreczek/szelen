@@ -95,3 +95,7 @@ table {
     display: block;
     border-radius: 50%;
 }
+
+#btn-checkout{
+    margin-top: 1em;
+}

@@ -36,6 +36,7 @@ const btnAdd = 'btn-add'
 const btnCheck = 'btn-check'
 const btnSending = 'btn-sending'
 const btnAwards = 'btn-awards'
+const btnCheckOut = 'btn-checkout'
 
 var buttons = [
     btnBack,
@@ -47,6 +48,7 @@ var buttons = [
     btnCheck,
     btnSending,
     btnAwards,
+    btnCheckOut,
 ]
 
 var pageConfig = {
@@ -77,6 +79,10 @@ var pageConfig = {
             {
                 id: btnAwards,
                 func: function () { switchToPage(pageAwards) }
+            },
+            {
+                id: btnCheckOut,
+                func: checkOut
             },
             {
                 id: btnAdd,
