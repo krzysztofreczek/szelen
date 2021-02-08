@@ -107,12 +107,11 @@ function eventsEqual(e1, e2) {
 function persistEvent(user, timestamp, callback) {
     var xhr = new XMLHttpRequest()
 
-    var url = 'https://thingproxy.freeboard.io/fetch/https://circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
-    xhr.open("POST", url, true)
+    var url = 'http://alloworigin.com/post?url=circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
+    xhr.open("GET", url, true)
 
     xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
     xhr.setRequestHeader("Content-type", "application/json")
-    
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 201) {
