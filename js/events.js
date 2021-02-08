@@ -107,7 +107,7 @@ function eventsEqual(e1, e2) {
 function persistEvent(user, timestamp, callback) {
     var xhr = new XMLHttpRequest()
 
-    var url = 'http://alloworigin.com/post?url=circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
+    var url = 'https://alloworigin.com/post?url=circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
     xhr.open("POST", url, true)
 
     xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
