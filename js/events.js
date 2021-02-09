@@ -107,11 +107,12 @@ function eventsEqual(e1, e2) {
 function persistEvent(user, timestamp, callback) {
     var xhr = new XMLHttpRequest()
 
-    var url = 'https://anyorigin.com/go?url=https://circleci.com:443/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
-    xhr.open("POST", url, true)
+    var url = 'https://withered-feather-db6a.reczek-krzysztof.workers.dev/'
+    xhr.open("GET", url, true)
 
-    xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
-    xhr.setRequestHeader("Content-type", "application/json")
+    // var url = 'https://nameless-grass-0ef3.reczek-krzysztof.workers.dev/?https://circleci.com/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
+    // xhr.setRequestHeader("Authorization", "Basic " + btoa("cf6722fa167f5b50afc9f33b04c7824f04052f31:"))
+    // xhr.setRequestHeader("Content-type", "application/json")
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 201) {
@@ -120,8 +121,8 @@ function persistEvent(user, timestamp, callback) {
         }
     }
 
-    var payload = `{"build_parameters" : {"CIRCLE_JOB" : "add_event", "EVENT_USER" : "` + user + `", "EVENT_TIMESTAMP" : "` + timestamp + `" }}`
-    xhr.send(payload)
+    // var payload = `{"build_parameters" : {"CIRCLE_JOB" : "add_event", "EVENT_USER" : "` + user + `", "EVENT_TIMESTAMP" : "` + timestamp + `" }}`
+    xhr.send()
 }
 
 function persistEventInCookies(user, timestamp) {
