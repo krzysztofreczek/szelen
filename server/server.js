@@ -31,7 +31,7 @@ async function handleRequest(request) {
         })
     }
     
-    const payload = `{'build_parameters' : {'CIRCLE_JOB' : 'add_event', 'EVENT_USER' : '` + user + `', 'EVENT_TIMESTAMP' : '` + timestamp + `' }}`  
+    const payload = `{"build_parameters" : {"CIRCLE_JOB" : "add_event", "EVENT_USER" : "` + user + `", "EVENT_TIMESTAMP" : "` + timestamp + `" }}`  
     const url = 'https://circleci.com/api/v1.1/project/github/krzysztofreczek/szelen/tree/master'
     const req = new Request(url, {
         method: 'POST',
