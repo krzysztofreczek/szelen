@@ -105,17 +105,17 @@ function eventsEqual(e1, e2) {
 }
 
 function persistEvent(user, timestamp, callback) {
+    var xhr = new XMLHttpRequest()
 
     var url = 'https://withered-feather-db6a.reczek-krzysztof.workers.dev/?user=' + user + '&timestamp=' + timestamp
-    
-    var xhr = new XMLHttpRequest()
     xhr.open("GET", url, true)
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 201) {
             persistEventInCookies(user, timestamp)
             callback()
         }
     }
+
     xhr.send()
 }
 
