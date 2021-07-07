@@ -126,5 +126,6 @@ var events_4 = [
 {date:"2021/6/22",user:"Majkel"},
 {date:"2021/7/2",user:"Ania"},
 {date:"2021/7/5",user:"Krzysio"},
+{date:"2021/7/6",user:"Ania"},
 {}
 ]
